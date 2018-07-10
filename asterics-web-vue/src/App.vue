@@ -1,23 +1,30 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+  <div>
+    <navigation/>
+    <div class="container">
+      <sidebar/>
+      <main-content/>
+    </div>
   </div>
 </template>
 
 <script>
+import navigation from "@/components/general/navigation.vue";
+import sidebar from "@/components/general/sidebar.vue";
+import mainContent from "@/components/general/mainContent.vue";
+
 export default {
-  name: 'App'
-}
+  name: "App",
+  components: {
+    navigation,
+    sidebar,
+    mainContent
+  }
+};
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style scoped>
+div {
+  border: solid 1px green;
 }
 </style>
