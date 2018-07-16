@@ -1,19 +1,24 @@
 {
-  "name": "asterics-web-vue_",
+  "name": "asterics-web-vue",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build:devel": "vue-cli-service build --mode development",
+    "build:modern": "vue-cli-service build --modern",
+    "build:open": "http-server dist -p 8080 -o",
+    "build:start": "http-server dist -p 8080",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "bootstrap-vue": "^2.0.0-rc.11",
-    "register-service-worker": "^1.0.0",
     "vue": "^2.5.16",
+    "vuex": "^3.0.1",
     "vue-router": "^3.0.1",
-    "vuex": "^3.0.1"
+    "bootstrap": "^4.1.2",
+    "bootstrap-vue": "^2.0.0-rc.11",
+    "register-service-worker": "^1.0.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0-beta.15",
@@ -26,6 +31,7 @@
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^23.0.1",
     "css-loader": "^1.0.0",
+    "http-server": "^0.11.1",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",
