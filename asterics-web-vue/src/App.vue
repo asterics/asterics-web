@@ -15,7 +15,7 @@
       <b-collapse is-nav id="nav_collapse">
 
         <b-nav-form class="form-inline">
-          <b-input-group class="w-100 mx-lg-4 mt-4 mt-lg-0">
+          <b-input-group class="w-100 mx-lg-4 mt-4 mt-lg-0" style="display: flex; flex-flow: row nowrap;">
             <b-form-input class="mr-sm-0" type="text" placeholder="Search"></b-form-input>
             <div class="input-group-append">
               <b-button>
@@ -29,7 +29,7 @@
           </b-input-group>
         </b-nav-form>
 
-        <hr color="white" style="opacity: 0.4;">
+        <hr color="white" style="opacity: 0.4;" class="d-xl-none">
 
 
         <!-- Right aligned nav items -->
