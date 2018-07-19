@@ -47,9 +47,9 @@ export default {
           link: "#",
           icon: "universal-access",
           dropdown: [
-            { label: "Model", link: "#/getting-started/model/" },
-            { label: "Plugin", link: "#/getting-started/plugin/" },
-            { label: "AT Solution", link: "#/getting-started/at-solution/" }
+            { label: "Model", link: "/getting-started/model/" },
+            { label: "Plugin", link: "/getting-started/plugin/" },
+            { label: "AT Solution", link: "/getting-started/at-solution/" }
           ]
         },
         {

@@ -1,37 +1,5 @@
 <template>
-  <div>
-    {{ title }}
-  <p>Lorem Ipsum, Text. Lorem Ipsum, Text. Lorem Ipsum, Text.</p>
-  <p>Lorem Ipsum, Text. Lorem Ipsum, Text. Lorem Ipsum, Text.</p>
-  <p>Lorem Ipsum, Text. Lorem Ipsum, Text. Lorem Ipsum, Text.</p>
-  <p>Lorem Ipsum, Text. Lorem Ipsum, Text. Lorem Ipsum, Text.</p>
-  <p>Lorem Ipsum, Text. Lorem Ipsum, Text. Lorem Ipsum, Text.</p>
-  <p>Lorem Ipsum, Text. Lorem Ipsum, Text. Lorem Ipsum, Text.</p>
-  <p>Lorem Ipsum, Text. Lorem Ipsum, Text. Lorem Ipsum, Text.</p>
-
-  <p>Lorem Ipsum, Text. Lorem Ipsum, Text. Lorem Ipsum, Text.</p>
-  <p>Lorem Ipsum, Text. Lorem Ipsum, Text. Lorem Ipsum, Text.</p>
-  <p>Lorem Ipsum, Text. Lorem Ipsum, Text. Lorem Ipsum, Text.</p>
-  <p>Lorem Ipsum, Text. Lorem Ipsum, Text. Lorem Ipsum, Text.</p>
-  <p>Lorem Ipsum, Text. Lorem Ipsum, Text. Lorem Ipsum, Text.</p>
-  <p>Lorem Ipsum, Text. Lorem Ipsum, Text. Lorem Ipsum, Text.</p>
-  <p>Lorem Ipsum, Text. Lorem Ipsum, Text. Lorem Ipsum, Text.</p>
-  <p>Lorem Ipsum, Text. Lorem Ipsum, Text. Lorem Ipsum, Text.</p>
-  <p>Lorem Ipsum, Text. Lorem Ipsum, Text. Lorem Ipsum, Text.</p>
-  <p>Lorem Ipsum, Text. Lorem Ipsum, Text. Lorem Ipsum, Text.</p>
-  <p>Lorem Ipsum, Text. Lorem Ipsum, Text. Lorem Ipsum, Text.</p>
-  <p>Lorem Ipsum, Text. Lorem Ipsum, Text. Lorem Ipsum, Text.</p>
-  <p>Lorem Ipsum, Text. Lorem Ipsum, Text. Lorem Ipsum, Text.</p>
-  <p>Lorem Ipsum, Text. Lorem Ipsum, Text. Lorem Ipsum, Text.</p>
-
-  <hr>
-
-  <p>Lorem Ipsum, Text. Lorem Ipsum, Text. Lorem Ipsum, Text.</p>
-  <p>Lorem Ipsum, Text. Lorem Ipsum, Text. Lorem Ipsum, Text.</p>
-  <p>Lorem Ipsum, Text. Lorem Ipsum, Text. Lorem Ipsum, Text.</p>
-  <p>Lorem Ipsum, Text. Lorem Ipsum, Text. Lorem Ipsum, Text.</p>
-  <p>Lorem Ipsum, Text. Lorem Ipsum, Text. Lorem Ipsum, Text.</p>
-  </div>
+  <router-view></router-view>
 </template>
 
 <script>

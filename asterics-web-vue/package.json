@@ -9,6 +9,8 @@
     "build:modern": "vue-cli-service build --modern",
     "build:open": "http-server dist -p 8080 -o",
     "build:start": "http-server dist -p 8080",
+    "project": "vue ui",
+    "webpack:config": "vue-cli-service inspect",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit"
   },

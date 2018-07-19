@@ -2,9 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <h1>
-          Getting Started
-        </h1>
+        <h3>AT Solution</h3>
         <p>
           AT Solution AT Solution AT Solution AT Solution AT Solution AT Solution AT Solution
           AT Solution AT Solution AT Solution AT Solution AT Solution AT Solution AT Solution
