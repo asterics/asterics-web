@@ -23,7 +23,7 @@
 
       <!-- Navigation Itmes (right aligned) -->
       <b-navbar-nav class="ml-auto navigation-items">
-        <div v-for="item in navitems" :key="item">
+        <div v-for="item in navigationItems"  :key="item.label">
           <navigation-item :item="item" class="nobreak"></navigation-item>
         </div>
       </b-navbar-nav>
@@ -33,88 +33,20 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import Brand from "@/components/general/navigation/Brand.vue";
 import Searchbar from "@/components/general/navigation/Searchbar.vue";
 import NavigationItem from "@/components/general/navigation/NavigationItem.vue";
 
 export default {
-  data() {
-    return {
-      // TODO: Implement data ev. in/with vuex
-      navitems: [
-        {
-          label: "Getting Started",
-          link: "#",
-          icon: "universal-access",
-          dropdown: [
-            { label: "Model", link: "#/getting-started/model/" },
-            { label: "Plugin", link: "#/getting-started/plugin/" },
-            { label: "AT Solution", link: "#/getting-started/at-solution/" }
-          ]
-        },
-        {
-          label: "Documentation",
-          link: "#",
-          icon: "book",
-          // TODO: Implement utility property, e.g. display: ["permanent", "lg"] setting component accordingly.
-          // Current implementation passes only class.
-          icon_display: "d-lg-none",
-          dropdown: [
-            { label: "ARE", link: "#" },
-            { label: "ACS", link: "#" },
-            { label: "Model", link: "#" },
-            { label: "Plugin", link: "#" },
-            { label: "Training", link: "#" },
-            { label: "AT Solution", link: "#" },
-            { label: "API", link: "#" }
-          ]
-        },
-        {
-          label: "Support",
-          link: "#",
-          icon: "question-circle",
-          icon_display: "d-lg-none",
-          dropdown: [
-            { label: "Forum", link: "#" },
-            { label: "Contact", link: "#" },
-            { label: "Issues", link: "#" },
-            { label: "Stack Overflow", link: "#" }
-          ]
-        },
-        {
-          label: "Download",
-          link: "#",
-          icon: "download",
-          icon_display: "d-lg-none"
-        },
-        {
-          label: "Blog",
-          link: "#",
-          icon: ["fab", "wordpress"],
-          icon_display: "d-lg-none"
-        },
-        {
-          label: "Develop",
-          link: "#",
-          icon: "code",
-          icon_display: "d-lg-none",
-          dropdown: [
-            { label: "Model", link: "#" },
-            { label: "Plugin", link: "#" },
-            { label: "AT Solution", link: "#" }
-          ]
-        },
-        { label: "GitHub", link: "#", icon: ["fab", "github"] }
-      ]
-    };
-  },
   components: {
     Brand,
     Searchbar,
     NavigationItem
   },
-  props: {},
-  methods: {}
+  computed: {
+    ...mapGetters(["navigationItems"])
+  }
 };
 </script>
 
