@@ -3,9 +3,7 @@ import router from "@/libraries/router";
 import store from "@/libraries/store";
 
 // Bootstrap
-import BootstrapVue from "bootstrap-vue";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap-vue/dist/bootstrap-vue.css";
+import "@/libraries/bootstrap";
 
 // FontAwesome
 import "@/libraries/icons";
@@ -14,7 +12,6 @@ import "@/libraries/icons";
 import App from "./App.vue";
 
 Vue.config.productionTip = false;
-Vue.use(BootstrapVue);
 
 new Vue({
   router,
