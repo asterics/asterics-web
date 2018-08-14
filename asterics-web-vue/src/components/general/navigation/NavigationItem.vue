@@ -5,7 +5,7 @@
         <font-awesome-icon :class="this.item.icon_display" :icon="this.item.icon" transform="up-2"></font-awesome-icon>
         <span class="navigation-item"> {{ this.item.label }}</span>
       </template>
-      <b-dropdown-item v-for="d in this.item.dropdown" :key="d" :href="d.link">{{ d.label }}</b-dropdown-item>
+      <b-dropdown-item v-for="d in this.item.dropdown" :key="d.label" :href="d.link">{{ d.label }}</b-dropdown-item>
     </b-nav-item-dropdown>
 
     <!-- or without -->
@@ -36,9 +36,11 @@ export default {
 .nobreak {
   white-space: nowrap;
 }
+/*
 .navigation-item {
-  /* TODO: Implement hover effects: https://codepen.io/anon/pen/BPQQZg */
-  /* text-transform: uppercase; */
-  /* padding: 4px; */
+  TODO: Implement hover effects: https://codepen.io/anon/pen/BPQQZg
+  text-transform: uppercase;
+  padding: 4px;
 }
+*/
 </style>
