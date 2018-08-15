@@ -9,9 +9,13 @@ import Vuetify from "vuetify";
 import colors from "vuetify/es5/util/colors";
 Vue.use(Vuetify, {
   theme: {
-    primary: colors.red.darken1,
-    secondary: colors.red.darken1,
-    accent: colors.red.darken1
+    primary: colors.cyan.lighten2,
+    secondary: colors.cyan.darken2,
+    accent: colors.blue.darken3,
+    error: colors.red.base,
+    warning: colors.yellow.base,
+    info: colors.blue.base,
+    success: colors.green.base
   }
 });
 
