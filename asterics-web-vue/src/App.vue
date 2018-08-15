@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <v-app>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
     <navigation></navigation>
 
     <div class="container">
@@ -15,7 +16,7 @@
 
       </div>
     </div>
-  </div>
+  </v-app>
 </template>
 
 <script>

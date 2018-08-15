@@ -7,6 +7,7 @@ import GettingStarted from "@/components/getting-started/GettingStarted";
 import GettingStartedModel from "@/components/getting-started/Model";
 import GettingStartedPlugin from "@/components/getting-started/Plugin";
 import GettingStartedATSolution from "@/components/getting-started/ATSolution";
+import Help from "@/components/support/Help";
 
 Vue.use(Router);
 
@@ -37,6 +38,11 @@ export default new Router({
       path: "/getting-started/at-solution",
       name: "getting-started-at-solution",
       component: GettingStartedATSolution
+    },
+    {
+      path: "/help",
+      name: "help",
+      component: Help
     }
   ]
 });

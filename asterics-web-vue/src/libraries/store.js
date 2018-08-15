@@ -39,6 +39,7 @@ export default new Vuex.Store({
         icon: "question-circle",
         icon_display: "d-lg-none",
         dropdown: [
+          { label: "Help", link: "#/help" },
           { label: "Forum", link: "#" },
           { label: "Contact", link: "#" },
           { label: "Issues", link: "#" },
