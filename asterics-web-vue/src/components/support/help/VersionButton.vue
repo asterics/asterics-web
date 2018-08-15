@@ -21,6 +21,11 @@
           </v-select>
 
           </v-flex>
+          
+          <v-flex xs6></v-flex>
+          <v-flex v-if="repo" v-for="item in repo" :key="item.sha" xs12>
+            {{ item.type }} &emsp; {{ item.name }}
+          </v-flex>
 
         </v-layout>
 
@@ -36,16 +41,26 @@ export default {
   data() {
     return {
       tags: null,
-      selection: "latest"
+      repo: null,
+      selection: null
     };
   },
   beforeCreate: function() {
     loadTags().then(r => {
       this.tags = r;
     });
+  },
+  watch: {
+    selection: function(v) {
+      fetch(`https://api.github.com/repos/asterics/AsTeRICS/contents?ref=${v}`)
+        .then(r => r.json())
+        .then(o => {
+          this.repo = o;
+        });
+    }
   }
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 </style>
