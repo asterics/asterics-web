@@ -1,4 +1,4 @@
-<template>  
+<template>
   <!-- <v-select class="btn-info" v-if="tags" v-model="tags[0]" :options="tags"></v-select> -->
   <!-- <b-dropdown :text="tags[selected]" class="m-md-2">
     <div v-for="tag in tags" :key="tag">
