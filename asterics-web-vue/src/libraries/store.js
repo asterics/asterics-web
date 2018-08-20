@@ -70,11 +70,19 @@ export default new Vuex.Store({
         ]
       },
       { label: "GitHub", link: "#", icon: ["fab", "github"] }
-    ]
+    ],
+    helpInfo: {
+      api_path: "https://api.github.com/repos/asterics/AsTeRICS/",
+      help_path:
+        "https://api.github.com/repos/asterics/AsTeRICS/contents/Documentation/ACS-Help/HTML/",
+      tag_path: "https://api.github.com/repos/asterics/AsTeRICS/tags/",
+      sections: ["Plugins", "ACS", "ARE"]
+    }
   },
   mutations: {},
   actions: {},
   getters: {
-    navigationItems: s => s.navigationItems
+    navigationItems: s => s.navigationItems,
+    helpInfo: s => s.helpInfo
   }
 });

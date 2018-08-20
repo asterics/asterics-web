@@ -15,4 +15,11 @@ function loadTags() {
     });
 }
 
-export { loadTags };
+function HelpDirectory(name, type, path) {
+  this.name = name;
+  this.type = type;
+  this.path = path;
+  this.children = [];
+}
+
+export { loadTags, HelpDirectory };
