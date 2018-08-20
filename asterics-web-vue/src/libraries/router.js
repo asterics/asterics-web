@@ -8,6 +8,7 @@ import GettingStartedModel from "@/components/getting-started/Model";
 import GettingStartedPlugin from "@/components/getting-started/Plugin";
 import GettingStartedATSolution from "@/components/getting-started/ATSolution";
 import Help from "@/components/support/Help";
+import HelpContent from "@/components/support/help/HelpContent";
 
 Vue.use(Router);
 
@@ -43,6 +44,13 @@ export default new Router({
       path: "/help",
       name: "help",
       component: Help
+    },
+    /* FIXME: add path for tag -> map to selection (dropdown)*/
+    {
+      /* FIXME: does every html have to be inside folder? if not, change regex to opt. */
+      path: "/help/(.*?)/(.*)/(.*[.]html?)",
+      name: "help content",
+      component: HelpContent
     }
   ]
 });

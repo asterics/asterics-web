@@ -27,11 +27,6 @@ export default {
   watch: {
     selection: function(v) {
       this.$emit("clicked", v);
-      // fetch(`${this.dir_help_content.path}?ref=${v}`)
-      //   .then(r => r.json())
-      //   .then(o => {
-      //     this.repo_help_content = o;
-      //   });
     }
   }
 };

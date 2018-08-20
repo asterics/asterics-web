@@ -72,10 +72,10 @@ export default new Vuex.Store({
       { label: "GitHub", link: "#", icon: ["fab", "github"] }
     ],
     helpInfo: {
-      api_path: "https://api.github.com/repos/asterics/AsTeRICS/",
-      help_path:
-        "https://api.github.com/repos/asterics/AsTeRICS/contents/Documentation/ACS-Help/HTML/",
-      tag_path: "https://api.github.com/repos/asterics/AsTeRICS/tags/",
+      api: "https://api.github.com/repos/asterics/AsTeRICS/",
+      raw: "https://raw.githubusercontent.com/asterics/AsTeRICS/",
+      path: "Documentation/ACS-Help/HTML/",
+      tags: "https://api.github.com/repos/asterics/AsTeRICS/tags/",
       sections: ["Plugins", "ACS", "ARE"]
     }
   },
