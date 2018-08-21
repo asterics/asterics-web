@@ -7,8 +7,14 @@ import GettingStarted from "@/components/getting-started/GettingStarted";
 import GettingStartedModel from "@/components/getting-started/Model";
 import GettingStartedPlugin from "@/components/getting-started/Plugin";
 import GettingStartedATSolution from "@/components/getting-started/ATSolution";
-import Help from "@/components/support/Help";
-import HelpContent from "@/components/support/help/HelpContent";
+
+// import Help from "@/components/support/Help";
+// import HelpSidebar from "@/components/support/help/HelpSidebar";
+// import HelpContent from "@/components/support/help/HelpContent";
+
+import Documentation from "@/components/documentation/Documentation.vue";
+import DocSidebar from "@/components/documentation/DocSidebar.vue";
+import DocContent from "@/components/documentation/DocContent.vue";
 
 Vue.use(Router);
 
@@ -41,16 +47,20 @@ export default new Router({
       component: GettingStartedATSolution
     },
     {
-      path: "/help",
-      name: "help",
-      component: Help
+      path: "/doc",
+      name: "documentation",
+      components: {
+        default: Documentation,
+        sidebar: DocSidebar
+      }
     },
     /* FIXME: add path for tag -> map to selection (dropdown)*/
     {
       /* FIXME: does every html have to be inside folder? if not, change regex to opt. */
-      path: "/help/(.*?)/(.*)/(.*[.]html?)",
-      name: "help content",
-      component: HelpContent
+      /* FIXME: check for xss */
+      path: "/doc/(.*?)/(.*)/(.*[.]html?)",
+      name: "documentation content",
+      component: DocContent
     }
   ]
 });

@@ -1,72 +1,52 @@
 <template>
-  <b-navbar toggleable="lg" type="dark" variant="info" class="sticky-top py-3 shadow">
-    
-    <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
+  <v-toolbar color="primary" :clipped-left="$vuetify.breakpoint.lgAndUp" dark fixed app>
+    <v-toolbar-side-icon @click.stop="toggleSidebar"></v-toolbar-side-icon>
+    <v-toolbar-title>AsTeRICS Web</v-toolbar-title>
+      <v-spacer></v-spacer>
 
-    <!-- Brand -->
-    <brand></brand>
+      <v-toolbar-items v-for="n in navigationItems" :key="n.label" class="hidden-sm-and-down">
 
-    <b-collapse is-nav id="nav_collapse">
-      <!-- Searchbar -->
-      <searchbar placeholder="Search">
-        <b-button>
-          <font-awesome-icon class="my-2 my-sm-0" icon="eraser"></font-awesome-icon>
-        </b-button>
-        <b-button class="my-0" type="submit">
-          <font-awesome-icon icon="search" class="d-none d-lg-inline d-xl-none"></font-awesome-icon>
-          <span class="d-lg-none d-xl-inline">Search</span>
-        </b-button>
-      </searchbar>
+        <v-menu v-if="hasDropdown(n)" offset-y>
+          <v-btn slot="activator" class="" flat>
+            <v-icon left dark small>{{ n.icon }}</v-icon>
+            {{ n.label }}
+          </v-btn>
 
-      <!-- Horizontal Rule -->
-      <hr color="white" class="nav-divider d-xl-none">
+          <v-list>
+            <v-list-tile v-for="d in n.dropdown" :key="d.label" @click=";" :href="d.link">
+              <v-list-tile-title>{{ d.label }}</v-list-tile-title>
+            </v-list-tile>
+          </v-list>
+        </v-menu>
 
-      <!-- Navigation Itmes (right aligned) -->
-      <b-navbar-nav class="ml-auto navigation-items">
-        <div v-for="item in navigationItems"  :key="item.label">
-          <navigation-item :item="item" class="nobreak"></navigation-item>
-        </div>
-      </b-navbar-nav>
-    </b-collapse>
+        <v-btn v-else flat :href="n.link">
+          <v-icon left dark small>{{ n.icon }}</v-icon>
+          {{ n.label }}
+        </v-btn>
 
-  </b-navbar>
+      </v-toolbar-items>
+
+  </v-toolbar>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import Brand from "@/components/general/navigation/Brand.vue";
-import Searchbar from "@/components/general/navigation/Searchbar.vue";
-import NavigationItem from "@/components/general/navigation/NavigationItem.vue";
 
 export default {
-  components: {
-    Brand,
-    Searchbar,
-    NavigationItem
-  },
+  components: {},
   computed: {
     ...mapGetters(["navigationItems"])
+  },
+  methods: {
+    toggleSidebar: function() {
+      this.$emit("toggleSidebar");
+    },
+    hasDropdown: function(v) {
+      return v.hasOwnProperty("dropdown");
+    }
   }
 };
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css?family=Gaegu");
-
-nav.navbar.sticky-top {
-  margin-bottom: 2%;
-}
-
-.nav-divider {
-  opacity: 0.4;
-  height: 4px;
-}
-
-@media (max-width: 990px) {
-  .navigation-items {
-    padding-left: 10px;
-    font-size: 1.25em;
-    width: 100%;
-  }
-}
 </style>

@@ -1,26 +1,21 @@
 <template>
-  <!-- TODO: Implement hovering effects: 
-        * https://codepen.io/JFarrow/pen/fFrpg
-        * https://jsfiddle.net/T5vBR/114/
-  -->
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <h5>Sidebar</h5>
-        <p>
-          Text Text Text Text Text Text Text Text
-          Text Text Text Text Text Text Text Text
-          Text Text Text Text Text Text Text Text
-          Text Text Text Text Text Text Text Text
-        </p> 
-      </div>
-    </div>
-    
-  </div>
+  <!-- eslint-disable-next-line -->
+  <v-navigation-drawer :value="visible" @input="onTransitioned($event)" clipped app>
+    <router-view name="sidebar"/>
+  </v-navigation-drawer>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    visible: Boolean
+  },
+  methods: {
+    onTransitioned: function(e) {
+      this.$emit("onStatusSidebarChanged", e);
+    }
+  }
+};
 </script>
 
 <style scoped>

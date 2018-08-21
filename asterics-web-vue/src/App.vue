@@ -1,38 +1,40 @@
 <template>
   <v-app>
-    <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
-    <navigation></navigation>
 
-    <div class="container">
-      <div class="row">
+    <sidebar :visible="sidebarVisibility" @onStatusSidebarChanged="setToggleSidebar($event)"></sidebar>
+    <navigation @toggleSidebar="onToggleSidebar"></navigation>
 
-        <div class="col-3 d-none d-md-inline">
-          <sidebar></sidebar>
-        </div>
+    <v-content>
+      <v-container fluid>
+        <router-view></router-view>
+      </v-container>
+    </v-content>
 
-        <div class="col-12 col-md-9">
-          <main-content></main-content>
-        </div>
-
-      </div>
-    </div>
   </v-app>
 </template>
 
 <script>
 import Navigation from "@/components/general/Navigation.vue";
 import Sidebar from "@/components/general/Sidebar.vue";
-import MainContent from "@/components/general/MainContent.vue";
 
 export default {
   name: "App",
   components: {
     Navigation,
-    Sidebar,
-    MainContent
+    Sidebar
   },
   data() {
-    return {};
+    return {
+      sidebarVisibility: false
+    };
+  },
+  methods: {
+    onToggleSidebar: function() {
+      this.sidebarVisibility = !this.sidebarVisibility;
+    },
+    setToggleSidebar: function(e) {
+      this.sidebarVisibility = e;
+    }
   }
 };
 </script>

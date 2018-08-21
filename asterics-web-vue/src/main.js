@@ -4,13 +4,15 @@ import store from "@/libraries/store";
 
 // Vuetify
 import "vuetify/dist/vuetify.min.css";
-// import "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons";
+import "material-design-icons-iconfont/dist/material-design-icons.css";
+import "@fortawesome/fontawesome-free/css/all.css";
 import Vuetify from "vuetify";
 import colors from "vuetify/es5/util/colors";
 Vue.use(Vuetify, {
+  iconfont: "fa",
   theme: {
-    primary: colors.cyan.lighten2,
-    secondary: colors.cyan.darken2,
+    primary: colors.cyan.darken1,
+    secondary: colors.cyan.lighten2,
     accent: colors.blue.darken3,
     error: colors.red.base,
     warning: colors.yellow.base,
@@ -20,10 +22,10 @@ Vue.use(Vuetify, {
 });
 
 // Bootstrap
-import "@/libraries/bootstrap";
+// import "@/libraries/bootstrap";
 
 // FontAwesome
-import "@/libraries/icons";
+// import "@/libraries/icons";
 
 // Components
 import App from "./App.vue";
