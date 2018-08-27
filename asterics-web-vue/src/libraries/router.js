@@ -8,10 +8,6 @@ import GettingStartedModel from "@/components/getting-started/Model";
 import GettingStartedPlugin from "@/components/getting-started/Plugin";
 import GettingStartedATSolution from "@/components/getting-started/ATSolution";
 
-// import Help from "@/components/support/Help";
-// import HelpSidebar from "@/components/support/help/HelpSidebar";
-// import HelpContent from "@/components/support/help/HelpContent";
-
 import Documentation from "@/components/documentation/Documentation.vue";
 import DocSidebar from "@/components/documentation/DocSidebar.vue";
 import DocContent from "@/components/documentation/DocContent.vue";
@@ -26,7 +22,6 @@ export default new Router({
       component: Welcome
     },
     {
-      // FIXME: button click not possible due to simultaneous collapse event handling
       path: "/getting-started",
       name: "getting-started",
       component: GettingStarted
@@ -54,13 +49,16 @@ export default new Router({
         sidebar: DocSidebar
       }
     },
-    /* FIXME: add path for tag -> map to selection (dropdown)*/
     {
+      /* FIXME: add path for tag -> map to selection (dropdown)*/
       /* FIXME: does every html have to be inside folder? if not, change regex to opt. */
       /* FIXME: check for xss */
       path: "/doc/(.*?)/(.*)/(.*[.]html?)",
       name: "documentation content",
-      component: DocContent
+      components: {
+        default: DocContent,
+        sidebar: DocSidebar
+      }
     }
   ]
 });

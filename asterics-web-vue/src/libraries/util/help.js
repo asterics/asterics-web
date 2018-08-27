@@ -15,11 +15,39 @@ function loadTags() {
     });
 }
 
-function HelpDirectory(name, type, path) {
-  this.name = name;
-  this.type = type;
-  this.path = path;
-  this.children = [];
+async function asyncForEach(array, cb) {
+  for (let i = 0; i < array.length; i++) [await cb(array[i], i, array)];
 }
 
-export { loadTags, HelpDirectory };
+const getContent = async l => {
+  return await getS(l);
+};
+
+const getS = async url => {
+  let response = await fetch(url);
+  let ret = await response.json();
+
+  let hasChilds = false;
+  let n = [];
+  ret.forEach(v => {
+    if (v.type == "dir") hasChilds = true;
+
+    // eslint-disable-next-line
+    if ((v.type == "file" && new RegExp("html?$").test(v.name)) || v.type == "dir") {
+      let c = { node: v, contents: [] };
+      n.push(c);
+    }
+  });
+
+  if (hasChilds) {
+    await asyncForEach(n, async v => {
+      if (v.node.type == "dir" && v.node.name != "img") {
+        let c = await getS(v.node.url);
+        v.contents = [...c];
+      }
+    });
+  }
+  return n;
+};
+
+export { loadTags, getContent };

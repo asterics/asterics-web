@@ -3,11 +3,9 @@
       <v-layout row wrap>
         <v-flex xs12>
           <span v-html="content"></span>
-
         </v-flex>
       </v-layout>
     </v-container>
-    <!-- <span>{{ content }}</span> -->
 </template>
 
 <script>
@@ -29,21 +27,25 @@ export default {
     let filename = this.$route.params[2];
 
     // eslint-disable-next-line
-    let s = `${this.helpInfo.raw}${tag}/${this.helpInfo.path}/${path}/${filename}`;
+    let s = `${this.helpInfo.raw}${tag}/${this.helpInfo.path}${path}/${filename}`;
 
     fetch(s)
       .then(res => {
         return res.text();
       })
       .then(html => {
+        // Replace pictures
         let r = new RegExp(`src="img`, "g");
         // eslint-disable-next-line
         let c = html.replace(r, `src="${this.helpInfo.raw}${tag}/${this.helpInfo.path}${path}/img`);
+
+        //FIXME: Change href
+        r = /href="/;
+
         let p = new DOMParser();
         let d = p.parseFromString(c, "text/html");
 
         this.content = d.body.innerHTML;
-        // this.content = c;
       });
   }
 };
