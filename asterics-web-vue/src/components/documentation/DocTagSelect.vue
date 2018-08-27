@@ -1,0 +1,36 @@
+<template>
+  <v-select
+      v-if="tags"
+      :items="tags"
+      v-model="selection"
+      label="Select Version"
+      solo single-line>
+  </v-select>
+</template>
+
+<script>
+import { loadTags } from "@/libraries/util/help.js";
+
+export default {
+  data() {
+    return {
+      tags: null,
+      repo_help_content: null,
+      selection: null
+    };
+  },
+  beforeCreate: function() {
+    loadTags().then(r => {
+      this.tags = r;
+    });
+  },
+  watch: {
+    selection: function(v) {
+      this.$emit("clicked", v);
+    }
+  }
+};
+</script>
+
+<style scoped>
+</style>

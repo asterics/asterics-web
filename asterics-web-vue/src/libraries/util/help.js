@@ -3,11 +3,13 @@ function loadTags() {
     .then(res => res.json())
     .then(out => {
       let r = [];
-      out.forEach(element => {
-        if (/^v\d(.\d){0,2}$/g.test(element.name)) {
-          r.push(element.name);
-        }
-      });
+      if (!out.hasOwnProperty("message")) {
+        out.forEach(element => {
+          if (/^v\d(.\d){0,2}$/g.test(element.name)) {
+            r.push(element.name);
+          }
+        });
+      }
       return r;
     })
     .catch(err => {
@@ -29,15 +31,19 @@ const getS = async url => {
 
   let hasChilds = false;
   let n = [];
-  ret.forEach(v => {
-    if (v.type == "dir") hasChilds = true;
 
-    // eslint-disable-next-line
-    if ((v.type == "file" && new RegExp("html?$").test(v.name)) || v.type == "dir") {
-      let c = { node: v, contents: [] };
-      n.push(c);
-    }
-  });
+  /* If response has message property (i.e. "Not Found"), indication that fetch() failed */
+  if (!ret.hasOwnProperty("message")) {
+    ret.forEach(v => {
+      if (v.type == "dir") hasChilds = true;
+
+      // eslint-disable-next-line
+      if ((v.type == "file" && new RegExp("html?$").test(v.name)) || v.type == "dir") {
+        let c = { node: v, contents: [] };
+        n.push(c);
+      }
+    });
+  }
 
   if (hasChilds) {
     await asyncForEach(n, async v => {

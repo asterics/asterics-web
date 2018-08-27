@@ -45,9 +45,10 @@ export default new Vuex.Store({
     helpInfo: {
       api: "https://api.github.com/repos/asterics/AsTeRICS/",
       raw: "https://raw.githubusercontent.com/asterics/AsTeRICS/",
-      path: "Documentation/ACS-Help/HTML/",
+      path: "Documentation/ACS-Help/HTML",
       tags: "https://api.github.com/repos/asterics/AsTeRICS/tags/",
-      sections: ["Plugins", "ACS", "ARE"]
+      rate_limit: "https://api.github.com/rate_limit"
+      // sections: ["Plugins", "ACS", "ARE"]
     }
   },
   mutations: {},

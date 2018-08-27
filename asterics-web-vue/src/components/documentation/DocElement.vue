@@ -32,12 +32,10 @@ export default {
   },
   methods: {
     openHelp(e) {
-      console.log(e);
-
       let t = /ref=(.*)/.exec(e.url)[1];
       let p = e.path.replace(this.helpInfo.path, "").replace(e.name, "");
 
-      let s = `/doc/${t}/${p}${e.name}`;
+      let s = `/doc/${t}${p}${e.name}`;
       this.$router.push(s);
     },
     format(s) {

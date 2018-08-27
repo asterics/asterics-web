@@ -27,7 +27,7 @@ export default {
     let filename = this.$route.params[2];
 
     // eslint-disable-next-line
-    let s = `${this.helpInfo.raw}${tag}/${this.helpInfo.path}${path}/${filename}`;
+    let s = `${this.helpInfo.raw}${tag}/${this.helpInfo.path}/${path}/${filename}`;
 
     fetch(s)
       .then(res => {
@@ -37,9 +37,12 @@ export default {
         // Replace pictures
         let r = new RegExp(`src="img`, "g");
         // eslint-disable-next-line
-        let c = html.replace(r, `src="${this.helpInfo.raw}${tag}/${this.helpInfo.path}${path}/img`);
+        let c = html.replace(
+          r,
+          `src="${this.helpInfo.raw}${tag}/${this.helpInfo.path}/${path}/img`
+        );
 
-        //FIXME: Change href
+        //FIXME: (implement) Change href
         r = /href="/;
 
         let p = new DOMParser();
