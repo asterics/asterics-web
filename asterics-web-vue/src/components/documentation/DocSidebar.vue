@@ -1,8 +1,8 @@
 <template>
-    <v-navigation-drawer>
+    <v-navigation-drawer app clipped :value="sidebar.visible" @input="onTransitioned($event)">
       <rate-limit></rate-limit>
       <doc-tag-select @clicked="updateTag"></doc-tag-select>
-      <v-list>
+      <v-list dense>
         <v-list-group v-for="f in tree" :key="f.sha" v-if="f.type=='tree' && f.path != 'stylesheet'">
 
           <v-list-tile slot="activator">
@@ -40,9 +40,12 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["helpInfo"])
+    ...mapGetters(["helpInfo", "sidebar"])
   },
   methods: {
+    onTransitioned(v) {
+      this.$store.commit("sidebarVisible", v);
+    },
     updateTag(v) {
       this.tag = v;
 

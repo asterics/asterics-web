@@ -50,6 +50,9 @@ export default {
 
         this.content = d.body.innerHTML;
       });
+  },
+  beforeMount() {
+    this.$store.commit("sidebarVisible", true);
   }
 };
 </script>

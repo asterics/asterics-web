@@ -1,8 +1,8 @@
 <template>
   <v-app>
 
-    <sidebar :visible="sidebarVisibility" @onStatusSidebarChanged="setToggleSidebar($event)"></sidebar>
-    <navigation @toggleSidebar="onToggleSidebar"></navigation>
+    <sidebar></sidebar>
+    <navigation></navigation>
 
     <v-content>
       <v-container fluid>
@@ -22,19 +22,6 @@ export default {
   components: {
     Navigation,
     Sidebar
-  },
-  data() {
-    return {
-      sidebarVisibility: false
-    };
-  },
-  methods: {
-    onToggleSidebar: function() {
-      this.sidebarVisibility = !this.sidebarVisibility;
-    },
-    setToggleSidebar: function(e) {
-      this.sidebarVisibility = e;
-    }
   }
 };
 </script>

@@ -50,12 +50,20 @@ export default new Vuex.Store({
       tags: "https://api.github.com/repos/asterics/AsTeRICS/tags/",
       rate_limit: "https://api.github.com/rate_limit"
       // sections: ["Plugins", "ACS", "ARE"]
+    },
+    sidebar: {
+      visible: true
     }
   },
-  mutations: {},
+  mutations: {
+    sidebarVisible(state, value) {
+      state.sidebar.visible = value;
+    }
+  },
   actions: {},
   getters: {
     navigationItems: s => s.navigationItems,
-    helpInfo: s => s.helpInfo
+    helpInfo: s => s.helpInfo,
+    sidebar: s => s.sidebar
   }
 });
