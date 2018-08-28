@@ -21,12 +21,6 @@ Vue.use(Vuetify, {
   }
 });
 
-// Bootstrap
-// import "@/libraries/bootstrap";
-
-// FontAwesome
-// import "@/libraries/icons";
-
 // Components
 import App from "./App.vue";
 
