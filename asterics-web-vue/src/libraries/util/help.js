@@ -56,4 +56,35 @@ const getS = async url => {
   return n;
 };
 
-export { loadTags, getContent };
+function isRootElement(node) {
+  return !node.path.match(/\//);
+}
+
+function getParentId(node) {
+  if (!isRootElement(node)) {
+    let m = /(.*)\/(.*)/.exec(node.path);
+    return m[1];
+  }
+}
+
+function listToTree(list) {
+  var map = {},
+    node,
+    roots = [],
+    i;
+  for (i = 0; i < list.length; i++) {
+    map[list[i].path] = i;
+    list[i].children = [];
+  }
+  for (i = 0; i < list.length; i++) {
+    node = list[i];
+    if (!isRootElement(node)) {
+      list[map[getParentId(node)]].children.push(node);
+    } else {
+      roots.push(node);
+    }
+  }
+  return roots;
+}
+
+export { loadTags, getContent, listToTree };
