@@ -60,8 +60,10 @@ export default {
       let foldername;
       /* remove path */
       let r = /(.*)\/(.*)/.exec(path);
+
       if (r == null) foldername = path;
-      else return (foldername = r[2]);
+      else foldername = r[2];
+
       return foldername === folder;
     },
     isHTML(path) {
