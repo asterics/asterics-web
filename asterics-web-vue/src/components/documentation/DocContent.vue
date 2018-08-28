@@ -42,11 +42,16 @@ export default {
           `src="${this.helpInfo.raw}${tag}/${this.helpInfo.path}/${path}/img`
         );
 
+        r = new RegExp(`<img`, "g");
+        html = c.replace(r, `<img style="width: 100%;"`);
+
+        console.log(html);
+
         //FIXME: (implement) Change href
         r = /href="/;
 
         let p = new DOMParser();
-        let d = p.parseFromString(c, "text/html");
+        let d = p.parseFromString(html, "text/html");
 
         this.content = d.body.innerHTML;
       });

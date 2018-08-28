@@ -3,19 +3,7 @@
     <div class="row">
       <div class="col-12">
         <h3>Welcome</h3>
-        <p>
-          Text Text Text Text Text Text Text Text Text Text Text Text
-          Text Text Text Text Text Text Text Text Text Text Text Text
-          Text Text Text Text Text Text Text Text Text Text Text Text
-          Text Text Text Text Text Text Text Text Text Text Text Text
-          Text Text Text Text Text Text Text Text Text Text Text Text
-          Text Text Text Text Text Text Text Text Text Text Text Text
-          Text Text Text Text Text Text Text Text Text Text Text Text
-          Text Text Text Text Text Text Text Text Text Text Text Text
-          Text Text Text Text Text Text Text Text Text Text Text Text
-          Text Text Text Text Text Text Text Text Text Text Text Text
-        </p>
-        <p>
+        <p v-for="i in 10" :key="i">
           Text Text Text Text Text Text Text Text Text Text Text Text
           Text Text Text Text Text Text Text Text Text Text Text Text
           Text Text Text Text Text Text Text Text Text Text Text Text
