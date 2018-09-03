@@ -43,7 +43,7 @@ export default {
         );
 
         r = new RegExp(`<img`, "g");
-        html = c.replace(r, `<img style="width: 100%;"`);
+        html = c.replace(r, `<img style="max-width: 100%;"`);
 
         console.log(html);
 
