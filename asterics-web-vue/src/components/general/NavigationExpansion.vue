@@ -8,7 +8,7 @@
       </v-btn>
     </v-fab-transition>
 
-    <v-expansion-panel dark> 
+    <v-expansion-panel v-model="expansion" dark> 
       <v-expansion-panel-content class="primary" @input="expansionPanelState($event)">
         
         <div slot="header" style="font-size: 1.35em; font-weight: 450;">
@@ -28,11 +28,11 @@
               <v-list-tile
                 v-for="d in n.dropdown" :key="d.label" @click=";" :href="d.link"
               >
-                <v-list-tile-title>{{ d.label }}</v-list-tile-title>
+                <v-list-tile-title @click="hideNavigation">{{ d.label }}</v-list-tile-title>
               </v-list-tile>
             </v-list>
           </v-menu>
-          <v-btn v-else flat :href="n.link" class="bttn">
+          <v-btn v-else flat :href="n.link" class="bttn" @click="hideNavigation">
             <v-icon left dark small>{{ n.icon }}</v-icon>{{ n.label }}<v-spacer/>
           </v-btn>
         </div>
@@ -47,7 +47,7 @@ import { mapGetters } from "vuex";
 export default {
   data() {
     return {
-      expansion: 0
+      expansion: null
     };
   },
   computed: {
@@ -61,7 +61,12 @@ export default {
       return v.hasOwnProperty("dropdown");
     },
     expansionPanelState(v) {
-      this.expansion = v;
+      // this.expansion = v;
+      if (v) this.expansion = 0;
+      else this.expansion = null;
+    },
+    hideNavigation() {
+      this.expansion = null;
     }
   }
 };
