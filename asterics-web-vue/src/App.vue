@@ -1,37 +1,27 @@
 <template>
-  <div>
+  <v-app>
+
+    <sidebar></sidebar>
     <navigation></navigation>
 
-    <div class="container">
-      <div class="row">
+    <v-content>
+      <v-container fluid>
+        <router-view :key="$route.fullPath"></router-view>
+      </v-container>
+    </v-content>
 
-        <div class="col-3 d-none d-md-inline">
-          <sidebar></sidebar>
-        </div>
-
-        <div class="col-12 col-md-9">
-          <main-content></main-content>
-        </div>
-
-      </div>
-    </div>
-  </div>
+  </v-app>
 </template>
 
 <script>
 import Navigation from "@/components/general/Navigation.vue";
 import Sidebar from "@/components/general/Sidebar.vue";
-import MainContent from "@/components/general/MainContent.vue";
 
 export default {
   name: "App",
   components: {
     Navigation,
-    Sidebar,
-    MainContent
-  },
-  data() {
-    return {};
+    Sidebar
   }
 };
 </script>
