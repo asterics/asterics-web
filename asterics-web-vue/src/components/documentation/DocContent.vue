@@ -18,7 +18,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["helpInfo", "github"])
+    ...mapGetters(["github"])
   },
   created: function() {
     /* FIXME: check for xss */
