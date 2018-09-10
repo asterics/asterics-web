@@ -2,7 +2,7 @@
   <nav>
     <v-fab-transition>
       <v-btn
-        v-show="!sidebar.visible && !expansion"
+        v-show="!webapp.sidebar.visible && !expansion"
         color="secondary" fab dark fixed bottom right @click="toggleSidebar">
         <v-icon large>swap_horiz</v-icon>
       </v-btn>
@@ -19,7 +19,7 @@
           <v-icon left dark small>home</v-icon>Home<v-spacer/>
         </v-btn>
         
-        <div v-for="n in navigationItems" :key="n.label" class="cntr">
+        <div v-for="n in webapp.navigation.items" :key="n.label" class="cntr">
           <v-menu v-if="n.hasOwnProperty('dropdown')" class="bttn" offset-y>
             <v-btn slot="activator" class="bttn" flat>
               <v-icon left dark small>{{ n.icon }}</v-icon>{{ n.label }}<v-spacer/></v-btn>
@@ -51,17 +51,18 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["navigationItems", "sidebar"])
+    ...mapGetters(["webapp"])
   },
   methods: {
     toggleSidebar() {
-      this.$store.commit("sidebarVisible", !this.sidebar.visible);
+      let v = !this.webapp.sidebar.visible;
+      this.$store.commit("updateSidebarVisibility", v);
     },
     hasDropdown: function(v) {
       return v.hasOwnProperty("dropdown");
     },
     expansionPanelState(v) {
-      // this.expansion = v;
+      // NOTE: `exansion` set to 0 or null by <v-expansion-panel/>
       if (v) this.expansion = 0;
       else this.expansion = null;
     },

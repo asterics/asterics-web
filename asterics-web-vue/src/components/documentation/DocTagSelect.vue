@@ -9,7 +9,8 @@
 </template>
 
 <script>
-import { loadTags } from "@/libraries/util/help.js";
+import { mapGetters } from "vuex";
+import { loadGitTags } from "@/libraries/util/github.js";
 
 export default {
   data() {
@@ -19,14 +20,20 @@ export default {
       selection: null
     };
   },
-  beforeCreate: function() {
-    loadTags().then(r => {
+  computed: {
+    ...mapGetters(["github"])
+  },
+  beforeMount: function() {
+    let api = this.github.api.repos,
+      repo = this.github.AsTeRICS.path;
+
+    loadGitTags(`${api}/${repo}`).then(r => {
       this.tags = r;
     });
   },
   watch: {
-    selection: function(v) {
-      this.$emit("clicked", v);
+    selection: function(newSelection) {
+      this.$emit("clicked", newSelection);
     }
   }
 };

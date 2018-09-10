@@ -6,7 +6,7 @@
    
     <v-spacer></v-spacer>
 
-    <v-toolbar-items v-for="n in navigationItems" :key="n.label" class="hidden-sm-and-down">
+    <v-toolbar-items v-for="n in webapp.navigation.items" :key="n.label" class="hidden-sm-and-down">
 
       <v-menu v-if="hasDropdown(n)" offset-y>
         <v-btn slot="activator" class="" flat>
@@ -36,16 +36,17 @@ import { mapGetters } from "vuex";
 
 export default {
   computed: {
-    ...mapGetters(["navigationItems", "sidebar"])
+    ...mapGetters(["webapp"])
   },
   methods: {
     toggleSidebar: function() {
-      this.$store.commit("sidebarVisible", !this.sidebar.visible);
+      let v = !this.webapp.sidebar.visible;
+      this.$store.commit("updateSidebarVisibility", v);
     },
     hasDropdown: function(v) {
       return v.hasOwnProperty("dropdown");
     },
-    routeHome() {
+    routeHome: function() {
       this.$router.push("/");
     }
   }

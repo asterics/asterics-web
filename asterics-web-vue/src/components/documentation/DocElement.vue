@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="tag !== null">
     <!-- Files -->
     <v-list-tile v-if="element.type=='blob' && isHTML(element.path)" slot="activator" @click="openHelp(element.path)">
       <v-list-tile-title>{{format(element.path)}}</v-list-tile-title>
@@ -14,7 +14,7 @@
       </v-list-tile>
 
       <div v-for="i in element.children" :key="i.sha">
-        <doc :element="i" :tag="tag"/>
+        <doc-element :element="i" :tag="tag"/><!-- recursion -->
       </div>
 
     </v-list-group>
@@ -23,46 +23,43 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-
 export default {
-  name: "doc", // recursively used component <doc/>
-  computed: {
-    ...mapGetters(["helpInfo"])
-  },
+  name: "doc-element",
   props: {
     element: Object,
     tag: String
   },
   methods: {
-    openHelp(e) {
+    openHelp: function(e) {
       let s = `/doc/${this.tag}/${e}`;
       this.$router.push(s);
     },
     format(s) {
-      /* remove path */
-      let r = /(.*)\/(.*)/.exec(s);
-      if (r == null) r = s;
-      else r = r[2];
+      let match,
+        result = s;
 
-      /* remove file extension */
-      let i = /(.*)\.[^.]+$/.exec(r);
-      if (i == null) i = r;
-      else i = i[1];
+      /* remove path: https://regex101.com/r/mDX9Rl/1 */
+      match = /(.*)\/(.*)/.exec(result);
+      if (match != null) result = match[2];
 
-      /* remove dashes */
-      let str = i.replace(new RegExp("_", "g"), " ");
+      /* remove file extension: https://regex101.com/r/L9UIMs/1 */
+      match = /(.*)\.[^.]+$/.exec(result);
+      if (match != null) result = match[1];
+
+      /* remove dashes https://regex101.com/r/6ZSsJF/1 */
+      result = result.replace(new RegExp("_", "g"), " ");
 
       /* captialize */
-      return str.charAt(0).toUpperCase() + str.slice(1);
+      result = result.charAt(0).toUpperCase() + result.slice(1);
+
+      return result;
     },
     isFolder(path, folder) {
-      let foldername;
-      /* remove path */
-      let r = /(.*)\/(.*)/.exec(path);
+      let foldername = path;
 
-      if (r == null) foldername = path;
-      else foldername = r[2];
+      /* remove path: https://regex101.com/r/mDX9Rl/1 */
+      let match = /(.*)\/(.*)/.exec(path);
+      if (match != null) foldername = match[2];
 
       return foldername === folder;
     },

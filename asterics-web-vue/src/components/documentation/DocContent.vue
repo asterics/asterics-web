@@ -2,7 +2,7 @@
     <v-container fluid>
       <v-layout row wrap>
         <v-flex xs12>
-          <span v-html="content"></span>
+          <div v-html="content"></div>
         </v-flex>
       </v-layout>
     </v-container>
@@ -18,7 +18,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["helpInfo"])
+    ...mapGetters(["helpInfo", "github"])
   },
   created: function() {
     /* FIXME: check for xss */
@@ -26,38 +26,36 @@ export default {
     let path = this.$route.params[1];
     let filename = this.$route.params[2];
 
-    // eslint-disable-next-line
-    let s = `${this.helpInfo.raw}${tag}/${this.helpInfo.path}/${path}/${filename}`;
+    let basePath = `${this.github.api.raw}/`;
+    basePath += `${this.github.AsTeRICS.path}/`;
+    basePath += `${tag}/`;
+    basePath += `${this.github.AsTeRICS.acs_help}/`;
+    basePath += `${this.github.AsTeRICS.acs_help_docs}/`;
+    basePath += `${path}`;
 
-    fetch(s)
+    fetch(`${basePath}/${filename}`)
       .then(res => {
         return res.text();
       })
       .then(html => {
-        // Replace pictures
-        let r = new RegExp(`src="img`, "g");
-        // eslint-disable-next-line
-        let c = html.replace(
-          r,
-          `src="${this.helpInfo.raw}${tag}/${this.helpInfo.path}/${path}/img`
-        );
+        /* correct src path of pictures */
+        html = html.replace(/src="img/g, `src="${basePath}/img`);
 
-        r = new RegExp(`<img`, "g");
-        html = c.replace(r, `<img style="max-width: 100%;"`);
+        /* correct picture style */
+        html = html.replace(/<img/g, `<img style="max-width: 100%;"`);
 
-        console.log(html);
+        //FIXME: (implement) correct href's to working links.
+        // html = html.replace(/href="/g, `href="${basePath}`);
 
-        //FIXME: (implement) Change href
-        r = /href="/;
+        /* parse html */
+        let parser = new DOMParser();
+        let doc = parser.parseFromString(html, "text/html");
 
-        let p = new DOMParser();
-        let d = p.parseFromString(html, "text/html");
-
-        this.content = d.body.innerHTML;
+        this.content = doc.body.innerHTML;
       });
   },
-  beforeMount() {
-    this.$store.commit("sidebarVisible", true);
+  beforeMount: function() {
+    this.$store.commit("updateSidebarVisibility", true);
   }
 };
 </script>

@@ -21,11 +21,11 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["helpInfo"])
+    ...mapGetters(["github"])
   },
   methods: {
     updateRateLimit() {
-      fetch(this.helpInfo.rate_limit)
+      fetch(this.github.api.rate_limit)
         .then(r => r.json())
         .then(r => {
           this.rate_limit = r;

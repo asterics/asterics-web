@@ -1,5 +1,5 @@
 <template>
-    <v-navigation-drawer app clipped :value="sidebar.visible" @input="onTransitioned($event)">
+    <v-navigation-drawer app clipped :value="webapp.sidebar.visible" @input="onTransitioned($event)">
       <rate-limit></rate-limit>
       <doc-tag-select @clicked="updateTag"></doc-tag-select>
       <v-list dense>
@@ -21,7 +21,12 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { listToTree } from "@/libraries/util/help.js";
+import {
+  loadGitTags,
+  loadGitContent,
+  loadGitTree,
+  unfoldGitTree
+} from "@/libraries/util/github.js";
 
 import DocTagSelect from "@/components/documentation/DocTagSelect.vue";
 import DocElement from "@/components/documentation/DocElement.vue";
@@ -35,58 +40,73 @@ export default {
   },
   data() {
     return {
-      tag: "v3.0.1", // FIXME: Get latest tag automatically
+      tag: null,
       tree: []
     };
   },
   computed: {
-    ...mapGetters(["helpInfo", "sidebar"])
+    ...mapGetters(["github", "webapp"])
   },
   methods: {
-    onTransitioned(v) {
-      this.$store.commit("sidebarVisible", v);
+    onTransitioned: function(v) {
+      this.$store.commit("updateSidebarVisibility", v);
     },
-    updateTag(v) {
-      this.tag = v;
+    updateTag: function(tagSelected) {
+      this.tag = tagSelected;
 
-      /* push new route if necessary */
-      // eslint-disable-next-line
-      if (this.$route.name == "documentation content" && this.$route.params[0] != v) {
-        let s = `/doc/${v}/${this.$route.params[1]}/${this.$route.params[2]}`;
-        this.$router.push(s);
+      /* check if documentation content is displayed currently */
+      if (this.$route.name === "documentation content") {
+        /* check if tag was changed */
+        let rtag = this.$route.params[0];
+        if (rtag !== tagSelected) {
+          /* push new route */
+          let rpath = this.$route.params[1],
+            rfilename = this.$route.params[2];
+
+          let newRoute = `/doc/${tagSelected}/${rpath}/${rfilename}`;
+          this.$router.push(newRoute);
+        }
       }
     },
-    loadContent() {
-      // eslint-disable-next-line
-      let p = `${this.helpInfo.api}contents/${this.helpInfo.acs_help}?ref=${this.tag}`;
-      fetch(p)
-        .then(r => r.json())
-        .then(r => {
-          /* get folder `HTML` */
-          let folderHTML = r.filter(el => {
-            return el.name === "HTML";
-          });
+    loadContent: function() {
+      let api = this.github.api.repos,
+        repo = this.github.AsTeRICS.path,
+        folder = this.github.AsTeRICS.acs_help;
 
-          /* get tree of folder `HTML` */
-          if (folderHTML.length == 1) {
-            // eslint-disable-next-line
-            let t = `${this.helpInfo.api}git/trees/${folderHTML[0].sha}?recursive=1`;
-            fetch(t)
-              .then(r => r.json())
-              .then(r => {
-                /* convert flat array to tree */
-                this.tree = listToTree(r.tree);
-              });
-          }
+      let url = `${api}/${repo}`;
+
+      loadGitContent(url, folder, this.tag).then(r => {
+        /* get folder containing documentation */
+        let docFolder = r.filter(el => {
+          return el.name == this.github.AsTeRICS.acs_help_docs;
         });
+
+        if (docFolder.length == 1) {
+          /* get tree of documentation folder */
+          let sha = docFolder[0].sha;
+
+          loadGitTree(url, sha).then(r => {
+            this.tree = unfoldGitTree(r.tree);
+          });
+        }
+      });
     }
   },
   created: function() {
-    this.loadContent();
+    let api = this.github.api.repos,
+      repo = this.github.AsTeRICS.path;
+
+    loadGitTags(`${api}/${repo}`).then(r => {
+      /* get most recent tag */
+      r.sort().reverse();
+      this.tag = r[0];
+    });
   },
   watch: {
-    tag() {
+    tag: function() {
+      // if (newTag !== oldTag) {
       this.loadContent();
+      // }
     }
   }
 };
