@@ -6,10 +6,11 @@ The project uses vue+vuetify for a good-looking ui and webpack and babel for mai
 
 1. According to https://nodejs.org/en/download/package-manager/, please install nodev10 and npmv6:
 
-```
-curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
-sudo apt-get install -y nodejs
-```
+    e.g. for Linux, do
+    ```
+    curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+    sudo apt-get install -y nodejs
+    ```
 2. Pull repository
 ```
 git clone https://github.com/asterics/asterics-web.git
