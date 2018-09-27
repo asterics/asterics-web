@@ -1,0 +1,3 @@
+[submodule "asterics-web-vue/src/libraries/webacs"]
+	path = asterics-web-vue/src/libraries/webacs
+	url = https://github.com/asterics/WebACS.git
