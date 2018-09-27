@@ -12,6 +12,8 @@ import Documentation from "@/components/documentation/Documentation.vue";
 import DocSidebar from "@/components/documentation/DocSidebar.vue";
 import DocContent from "@/components/documentation/DocContent.vue";
 
+import WebACS from "@/components/develop/WebACS.vue";
+
 Vue.use(Router);
 
 export default new Router({
@@ -59,6 +61,11 @@ export default new Router({
         default: DocContent,
         sidebar: DocSidebar
       }
+    },
+    {
+      path: "/webacs",
+      name: "WebACS",
+      component: WebACS
     }
   ]
 });

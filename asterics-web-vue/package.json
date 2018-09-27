@@ -17,6 +17,7 @@
   "dependencies": {
     "register-service-worker": "^1.0.0",
     "vue": "^2.5.16",
+    "vue-jquery": "^1.0.6",
     "vue-router": "^3.0.1",
     "vuetify": "^1.1.12",
     "vuex": "^3.0.1"
@@ -34,9 +35,14 @@
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^23.0.1",
     "css-loader": "^1.0.0",
+    "domjson": "^0.1.2",
     "http-server": "^0.11.1",
+    "jsdom": "^12.0.0",
+    "kinetic": "^5.1.9",
+    "loglevel": "^1.1.0",
     "material-design-icons-iconfont": "^3.0.3",
     "node-sass": "^4.9.0",
+    "raw-loader": "^0.5.1",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",
     "vue-template-compiler": "^2.5.16"

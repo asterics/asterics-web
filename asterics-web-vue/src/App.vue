@@ -5,7 +5,7 @@
     <navigation></navigation>
 
     <v-content>
-      <v-container fluid>
+      <v-container class="content" fluid>
         <router-view :key="$route.fullPath"></router-view>
       </v-container>
     </v-content>
@@ -27,4 +27,7 @@ export default {
 </script>
 
 <style scoped>
+.content {
+  height: 90%;
+}
 </style>

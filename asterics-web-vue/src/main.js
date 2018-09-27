@@ -21,6 +21,10 @@ Vue.use(Vuetify, {
   }
 });
 
+// jQuery
+import jquery from "vue-jquery";
+Vue.use(jquery);
+
 // Components
 import App from "./App.vue";
 

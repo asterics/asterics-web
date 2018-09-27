@@ -49,7 +49,7 @@ export default new Vuex.Store({
             link: "#",
             icon: "fa-code",
             dropdown: [
-              { label: "Model", link: "#" },
+              { label: "Model", link: "#/webacs" },
               { label: "Plugin", link: "#" },
               { label: "AT Solution", link: "#" }
             ]
