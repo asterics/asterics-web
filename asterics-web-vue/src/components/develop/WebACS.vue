@@ -1,6 +1,6 @@
 <template>
-  <div>
-		<nav>
+  <div style="height: 100%;">
+		<nav style="height: 23%">
 	  	<!-- *************************** keyboard shortcuts******************************** -->
 			<div id="pageAreas">
 				<div id="pageAreasHeader">Shortcuts:</div>
@@ -19,239 +19,241 @@
 				<div id="mainMenuPanel" class="tabpanel" role="menu">
 
 					<ul id="mainMenuTablist" class="tablist" role="tablist">
-					<li 
-						id="tab1"
-						class="tab menuTab"
-						aria-controls="panel1"
-						aria-selected="true"
-						role="tab"
-						tabindex="0">
-						System
-					</li>
-					<li id="tab2" 
-						class="tab menuTab"
-						aria-controls="panel2"
-						role="tab"
-						aria-selected="false"
-						tabindex="-1">
-						Components
-					</li>
-					<li id="tab3" 
-						class="tab menuTab"
-						aria-controls="panel3"
-						role="tab"
-						aria-selected="false"
-						tabindex="-1">
-						Edit
-					</li>
-					<li id="tab4" 
-						class="tab menuTab"
-						aria-controls="panel4"
-						role="tab"
-						aria-selected="false"
-						tabindex="-1">
-						Misc.
-					</li>
+						<li 
+							id="tab1"
+							class="tab menuTab"
+							aria-controls="panel1"
+							aria-selected="true"
+							role="tab"
+							tabindex="0">
+							System
+						</li>
+						<li id="tab2" 
+							class="tab menuTab"
+							aria-controls="panel2"
+							role="tab"
+							aria-selected="false"
+							tabindex="-1">
+							Components
+						</li>
+						<li id="tab3" 
+							class="tab menuTab"
+							aria-controls="panel3"
+							role="tab"
+							aria-selected="false"
+							tabindex="-1">
+							Edit
+						</li>
+						<li id="tab4" 
+							class="tab menuTab"
+							aria-controls="panel4"
+							role="tab"
+							aria-selected="false"
+							tabindex="-1">
+							Misc.
+						</li>
 					</ul>
 
 					<div id="panel1" class="panel menuPanel" aria-labelledby="tab1" role="tabpanel">
-					<section class="buttonGroup">
-						<h2>ARE</h2>
-						<ul class="buttonList">
-							<li>
-								<button type="button" class="menuButton" id="connectAREBtn">
-									<div class="buttonContents">
-										<img
-											src="../../libraries/webacs/view/images/connect.png"
-											alt="Connect to ARE"
-										/>
-										Connect<br />to ARE
-									</div>
-								</button>
-							</li>
-							<li>
-								<button type="button" class="menuButton" id="disconnectAREBtn" disabled>
-									<div class="buttonContents">
-										<img
-											src="../../libraries/webacs/view/images/disconnect.png"
-											alt="Disconnect from ARE"
-										/>
-										Disconnect<br />from ARE
-									</div>
-								</button>
-							</li>
-							<li>
-								<button type="button" class="menuButton" id="uploadModelBtn" disabled>
-									<div class="buttonContents">
-										<img
-											src="../../libraries/webacs/view/images/Upload.png"
-											alt="Upload model"
-										/>
-										Upload<br />Model
-									</div>
-								</button>
-							</li>
-							<li>
-								<button type="button" class="menuButton" id="downloadModelBtn" disabled>
-									<div class="buttonContents">
-										<img
-											src="../../libraries/webacs/view/images/Download.png"
-											alt="Download model"
-										/>
-										Download<br />Model
-									</div>
-								</button>
-							</li>
-							<li>
-								<button type="button" class="menuButton" id="downloadCompCollBtn" disabled>
-									<div class="buttonContents">
-										<img
-											src="../../libraries/webacs/view/images/DownloadBundle.png"
-											alt="Download component collection"
-										/>
-										Download<br />Component Collection
-									</div>
-								</button>
-							</li>
-						</ul>
-					</section>
-					<section class="buttonGroup">
-						<h2>ARE Storage</h2>			
-						<ul class="buttonList">
-							<li>
-								<button type="button" class="menuButton" id="storeModelAREBtn" disabled>
-									<div class="buttonContents">
-										<img
-											src="../../libraries/webacs/view/images/storeup.png"
-											alt="Store model on ARE"
-										/>
-										Store<br />Model on ARE
-									</div>
-								</button>
-							</li>
-							<li>
-								<button type="button" class="menuButton" id="loadModelAREBtn" disabled>
-									<div class="buttonContents">
-										<img
-											src="../../libraries/webacs/view/images/storedown.png"
-											alt="Load model from storage"
-										/>
-										Load Model<br />from Storage
-									</div>
-								</button>
-							</li>
-							<li>
-								<button type="button" class="menuButton" id="activateStoredModelBtn" disabled>
-									<div class="buttonContents">
-										<img
-											src="../../libraries/webacs/view/images/storerun.png"
-											alt="Activate a stored model"
-										/>
-										Activate a<br />Stored Model
-									</div>
-								</button>
-							</li>
-							<li>
-								<button type="button" class="menuButton" id="deleteStoredModelBtn" disabled>
-									<div class="buttonContents">
-										<img
-											src="../../libraries/webacs/view/images/storedelete.png"
-											alt="Delete a stored model"
-										/>
-										Delete a<br />Stored Model
-									</div>
-								</button>
-							</li>
-							<li>
-								<button type="button" class="menuButton" id="setAsAutorunBtn" disabled>
-									<div class="buttonContents">
-										<img
-											src="../../libraries/webacs/view/images/autorun.png"
-											alt="Set as autorun"
-										/>
-										Set as<br />Autorun
-									</div>
-								</button>
-							</li>
-						</ul>
-					</section>
-					<section class="buttonGroup">
-						<h2>Model</h2>			
-						<ul class="buttonList">
-							<li>
-								<button type="button" class="menuButton" id="startModelBtn" disabled>
-									<div class="buttonContents">
-										<img
-											src="../../libraries/webacs/view/images/StartModel.png"
-											alt="Start model"
-										/>
-										Start<br />Model
-									</div>
-								</button>
-							</li>
-							<li>
-								<button type="button" class="menuButton" id="pauseModelBtn" disabled>
-									<div class="buttonContents">
-										<img
-											src="../../libraries/webacs/view/images/PauseModel.png"
-											alt="Pause model"
-										/>
-										Pause<br />Model
-									</div>
-								</button>
-							</li>
-							<li>
-								<button type="button" class="menuButton" id="stopModelBtn" disabled>
-									<div class="buttonContents">
-										<img src="../../libraries/webacs/view/images/StopModel.png" alt="Stop model" />
-										Stop<br />Model
-									</div>
-								</button>
-							</li>
-						</ul>
-					</section>
-					<section class="buttonGroup bg_right">
-						<h2>Local</h2>			
-						<ul class="buttonList">
-							<li>
-								<button type="button" class="menuButton" id="newModelBtn">
-									<div class="buttonContents">
-										<img src="../../libraries/webacs/view/images/new.png" alt="New model" />
-										New<br />Model
-									</div>
-								</button>
-							</li>
-							<li>
-								<button type="button" class="menuButton" id="openModelBtn">
-									<div class="buttonContents">
-										<img src="../../libraries/webacs/view/images/open.png" alt="Open model" />
-										Open<br />Model
-									</div>
-								</button>
-							</li>
-							<li>
-								<button type="button" class="menuButton" id="closeModelBtn">
-									<div class="buttonContents">
-										<img src="../../libraries/webacs/view/images/Close.png" alt="Close model" />
-										Close<br />Model
-									</div>
-								</button>
-							</li>
-							<li>
-								<button type="button" class="menuButton" id="saveModelBtn">
-									<div class="buttonContents">
-										<img src="../../libraries/webacs/view/images/save.png" alt="Save model" />
-										Save<br />Model
-									</div>
-								</button>
-							</li>
-						</ul>
-					</section>
+						<section style="width: 30%;" class="buttonGroup">
+							<ul class="buttonList">
+								<li>
+									<button type="button" class="menuButton" id="connectAREBtn">
+										<div class="buttonContents">
+											<img
+												src="../../libraries/webacs/view/images/connect.png"
+												alt="Connect to ARE"
+											/>
+											Connect<br />to ARE
+										</div>
+									</button>
+								</li>
+								<li>
+									<button type="button" class="menuButton" id="disconnectAREBtn" disabled>
+										<div class="buttonContents">
+											<img
+												src="../../libraries/webacs/view/images/disconnect.png"
+												alt="Disconnect from ARE"
+											/>
+											Disconnect<br />from ARE
+										</div>
+									</button>
+								</li>
+								<li>
+									<button type="button" class="menuButton" id="uploadModelBtn" disabled>
+										<div class="buttonContents">
+											<img
+												src="../../libraries/webacs/view/images/Upload.png"
+												alt="Upload model"
+											/>
+											Upload<br />Model
+										</div>
+									</button>
+								</li>
+								<li>
+									<button type="button" class="menuButton" id="downloadModelBtn" disabled>
+										<div class="buttonContents">
+											<img
+												src="../../libraries/webacs/view/images/Download.png"
+												alt="Download model"
+											/>
+											Download<br />Model
+										</div>
+									</button>
+								</li>
+								<li>
+									<button type="button" class="menuButton" id="downloadCompCollBtn" disabled>
+										<div class="buttonContents">
+											<img
+												src="../../libraries/webacs/view/images/DownloadBundle.png"
+												alt="Download component collection"
+											/>
+											Download<br />Component Collection
+										</div>
+									</button>
+								</li>
+							</ul>
+							<h2>ARE</h2>
+						</section>
+						<section style="width: 30%;" class="buttonGroup">
+							<ul class="buttonList">
+								<li>
+									<button type="button" class="menuButton" id="storeModelAREBtn" disabled>
+										<div class="buttonContents">
+											<img
+												src="../../libraries/webacs/view/images/storeup.png"
+												alt="Store model on ARE"
+											/>
+											Store<br />Model on ARE
+										</div>
+									</button>
+								</li>
+								<li>
+									<button type="button" class="menuButton" id="loadModelAREBtn" disabled>
+										<div class="buttonContents">
+											<img
+												src="../../libraries/webacs/view/images/storedown.png"
+												alt="Load model from storage"
+											/>
+											Load Model<br />from Storage
+										</div>
+									</button>
+								</li>
+								<li>
+									<button type="button" class="menuButton" id="activateStoredModelBtn" disabled>
+										<div class="buttonContents">
+											<img
+												src="../../libraries/webacs/view/images/storerun.png"
+												alt="Activate a stored model"
+											/>
+											Activate a<br />Stored Model
+										</div>
+									</button>
+								</li>
+								<li>
+									<button type="button" class="menuButton" id="deleteStoredModelBtn" disabled>
+										<div class="buttonContents">
+											<img
+												src="../../libraries/webacs/view/images/storedelete.png"
+												alt="Delete a stored model"
+											/>
+											Delete a<br />Stored Model
+										</div>
+									</button>
+								</li>
+								<li>
+									<button type="button" class="menuButton" id="setAsAutorunBtn" disabled>
+										<div class="buttonContents">
+											<img
+												src="../../libraries/webacs/view/images/autorun.png"
+												alt="Set as autorun"
+											/>
+											Set as<br />Autorun
+										</div>
+									</button>
+								</li>
+							</ul>
+							<h2>ARE Storage</h2>
+						</section>
+						<section style="width: 20%;" class="buttonGroup">
+							<ul class="buttonList">
+								<li>
+									<button type="button" class="menuButton" id="startModelBtn" disabled>
+										<div class="buttonContents">
+											<img
+												src="../../libraries/webacs/view/images/StartModel.png"
+												alt="Start model"
+											/>
+											Start<br />Model
+										</div>
+									</button>
+								</li>
+								<li>
+									<button type="button" class="menuButton" id="pauseModelBtn" disabled>
+										<div class="buttonContents">
+											<img
+												src="../../libraries/webacs/view/images/PauseModel.png"
+												alt="Pause model"
+											/>
+											Pause<br />Model
+										</div>
+									</button>
+								</li>
+								<li>
+									<button type="button" class="menuButton" id="stopModelBtn" disabled>
+										<div class="buttonContents">
+											<img
+												src="../../libraries/webacs/view/images/StopModel.png"
+												alt="Stop model"
+											/>
+											Stop<br />Model
+										</div>
+									</button>
+								</li>
+							</ul>
+							<h2>Model</h2>
+						</section>
+						<section style="width: 20%;" class="buttonGroup bg_right">
+							<ul class="buttonList">
+								<li>
+									<button type="button" class="menuButton" id="newModelBtn">
+										<div class="buttonContents">
+											<img src="../../libraries/webacs/view/images/new.png" alt="New model" />
+											New<br />Model
+										</div>
+									</button>
+								</li>
+								<li>
+									<button type="button" class="menuButton" id="openModelBtn">
+										<div class="buttonContents">
+											<img src="../../libraries/webacs/view/images/open.png" alt="Open model" />
+											Open<br />Model
+										</div>
+									</button>
+								</li>
+								<li>
+									<button type="button" class="menuButton" id="closeModelBtn">
+										<div class="buttonContents">
+											<img src="../../libraries/webacs/view/images/Close.png" alt="Close model" />
+											Close<br />Model
+										</div>
+									</button>
+								</li>
+								<li>
+									<button type="button" class="menuButton" id="saveModelBtn">
+										<div class="buttonContents">
+											<img src="../../libraries/webacs/view/images/save.png" alt="Save model" />
+											Save<br />Model
+										</div>
+									</button>
+								</li>
+							</ul>
+							<h2>Local</h2>
+						</section>
 					</div>
 
 					<div id="panel2" class="panel menuPanel" aria-labelledby="tab2" role="tabpanel">
 					<section class="buttonGroup">
-						<h2>Components</h2>
 						<ul class="buttonList componentsMenu">
 							<li class="componentsMenu-item">
 								<img src="../../libraries/webacs/view/images/sensor.png" alt="Sensors" />
@@ -272,19 +274,19 @@
 									</ul>
 							</li>
 						</ul>
+						<h2>Components</h2>
 					</section>	
 					<section class="buttonGroup bg_right">
-						<label for="quickselect">Quickselect</label>
 						<input id="quickselect" list="componentsDataList">
 						<datalist id="componentsDataList">
 						</datalist>
 						<input id="insertButton" type="button" value="Insert"/>
+						<label for="quickselect">Quickselect</label>
 					</section>	
 					</div>
 
 					<div id="panel3" class="panel menuPanel" aria-labelledby="tab3" role="tabpanel">
 					<section class="buttonGroup">
-						<h2>Model Properties</h2>
 						<ul class="buttonList">
 							<li>
 								<button type="button" class="menuButton" id="editModelIDBtn" disabled>
@@ -309,9 +311,9 @@
 								</button>
 							</li>
 						</ul>
+						<h2>Model Properties</h2>
 					</section>
 					<section class="buttonGroup bg_right">
-						<h2>Edit</h2>			
 						<ul class="buttonList">
 							<li>
 								<button type="button" class="menuButton" id="cutBtn">
@@ -371,12 +373,12 @@
 								</button>
 							</li>
 						</ul>
+						<h2>Edit</h2>
 					</section>
 					</div>
 
 					<div id="panel4" class="panel menuPanel" aria-labelledby="tab4" role="tabpanel">
 					<section class="buttonGroup bg_right">
-						<h2>Miscellaneous</h2>			
 						<ul class="buttonList">
 							<li>
 								<button type="button" class="menuButton" id="componentCollMgrBtn" disabled>
@@ -422,6 +424,7 @@
 								</button>
 							</li>
 						</ul>
+						<h2>Miscellaneous</h2>
 					</section>
 					</div>
 				</div>    
@@ -551,13 +554,19 @@ import createWebACS from "@/libraries/webacs/webACS.js";
 import * as Kinetic from "kinetic";
 import * as log from "loglevel";
 
+import { mapGetters } from "vuex";
+
 export default {
   data() {
     return {
       WebACS: null
     };
   },
+  computed: {
+    ...mapGetters(["webapp"])
+  },
   mounted() {
+    this.$store.commit("setWebACSVisibility", true);
     let ACS = {};
     loadNameSpace(ACS);
     setupEventManager(ACS);

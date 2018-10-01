@@ -59,16 +59,20 @@ export default new Vuex.Store({
       },
       sidebar: {
         visible: true
+      },
+      content: {
+        webacs: {
+          visible: false
+        }
       }
-    },
-    sidebar: {
-      visible: true
     }
   },
   mutations: {
     updateSidebarVisibility(state, value) {
-      state.sidebar.visible = value;
       state.webapp.sidebar.visible = value;
+    },
+    setWebACSVisibility(state, value) {
+      state.webapp.content.webacs.visible = value;
     }
   },
   actions: {},
