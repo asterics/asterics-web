@@ -15,7 +15,7 @@
         </v-btn>
 
         <v-list>
-          <v-list-tile v-for="d in n.dropdown" :key="d.label" @click=";" :href="d.link">
+          <v-list-tile v-for="d in n.dropdown" :key="d.label" @click=";" :href="d.link" :target="d.target">
             <v-list-tile-title>{{ d.label }}</v-list-tile-title>
           </v-list-tile>
         </v-list>
