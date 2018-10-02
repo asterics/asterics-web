@@ -10,7 +10,7 @@
           </v-list-tile>
 
           <div v-for="e in f.children" :key="e.sha">
-            <doc-element :element="e" :tag="tag"></doc-element>
+            <doc-sidebar-element :element="e" :tag="tag"></doc-sidebar-element>
           </div>
 
         </v-list-group>
@@ -29,13 +29,13 @@ import {
 } from "@/libraries/util/github.js";
 
 import DocTagSelect from "@/components/documentation/DocTagSelect.vue";
-import DocElement from "@/components/documentation/DocElement.vue";
+import DocSidebarElement from "@/components/documentation/DocSidebarElement.vue";
 import RateLimit from "@/components/documentation/RateLimit.vue";
 
 export default {
   components: {
     DocTagSelect,
-    DocElement,
+    DocSidebarElement,
     RateLimit
   },
   data() {

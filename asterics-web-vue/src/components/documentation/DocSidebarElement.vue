@@ -14,7 +14,7 @@
       </v-list-tile>
 
       <div v-for="i in element.children" :key="i.sha">
-        <doc-element :element="i" :tag="tag"/><!-- recursion -->
+        <doc-sidebar-element :element="i" :tag="tag"/><!-- recursion -->
       </div>
 
     </v-list-group>
@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  name: "doc-element",
+  name: "doc-sidebar-element",
   props: {
     element: Object,
     tag: String
