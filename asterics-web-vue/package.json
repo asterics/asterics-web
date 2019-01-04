@@ -10,6 +10,8 @@
     "build:open": "http-server dist -p 8080 -o",
     "build:start": "http-server dist -p 8080",
     "project": "vue ui",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
     "webpack:config": "vue-cli-service inspect",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit"
@@ -35,11 +37,15 @@
     "babel-jest": "^23.0.1",
     "css-loader": "^1.0.0",
     "http-server": "^0.11.1",
+    "markdown-it": "^8.4.2",
     "material-design-icons-iconfont": "^3.0.3",
     "node-sass": "^4.9.0",
+    "pre-build-webpack": "^0.1.0",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",
-    "vue-template-compiler": "^2.5.16"
+    "unoconv": "^0.1.2",
+    "vue-template-compiler": "^2.5.16",
+    "vuepress": "^0.14.4"
   },
   "browserslist": [
     "> 1%",

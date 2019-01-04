@@ -103,10 +103,10 @@ export default {
     });
   },
   watch: {
-    tag: function() {
-      // if (newTag !== oldTag) {
-      this.loadContent();
-      // }
+    tag: function(newTag, oldTag) {
+      if (newTag !== oldTag) {
+        this.loadContent();
+      }
     }
   }
 };
