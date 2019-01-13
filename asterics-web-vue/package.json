@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "prebuild": "node scripts/setup.js",
+    "build": "echo vue-cli-service build",
     "build:devel": "vue-cli-service build --mode development",
     "build:modern": "vue-cli-service build --modern",
     "build:open": "http-server dist -p 8080 -o",
@@ -35,10 +36,12 @@
     "babel-jest": "^23.0.1",
     "copy-webpack-plugin": "^4.5.2",
     "css-loader": "^1.0.0",
+    "dotenv": "^6.2.0",
     "http-server": "^0.11.1",
     "material-design-icons-iconfont": "^3.0.3",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
+    "shelljs": "^0.8.3",
     "style-loader": "^0.21.0",
     "vue-template-compiler": "^2.5.16"
   },

@@ -1,3 +1,6 @@
 [submodule "asterics-web-vue/src/external/webacs"]
 	path = asterics-web-vue/src/external/webacs
 	url = https://github.com/asterics/WebACS.git
+[submodule "asterics-web-vue/src/external/asterics-docs"]
+	path = asterics-web-vue/src/external/asterics-docs
+	url = https://github.com/asterics/asterics-docs.git
