@@ -8,7 +8,8 @@ if (!shell.which("git")) {
 
 // Clone all submodules
 process.env.GIT_SUBMODULES.split(" ").forEach(submodule => {
-  if (shell.exec(`git submodule update ${submodule}`).code !== 0) {
+  if (shell.exec(`git submodule init ${submodule} &&`+
+                 `git submodule update ${submodule}`).code !== 0) {
     shell.echo(`Error: cloning git submodule ${submodule} failed`);
   }
 });
