@@ -30,7 +30,12 @@ export default new Vuex.Store({
               { label: "AT Solution", link: "#/getting-started/at-solution/" }
             ]
           },
-          { label: "Documentation", link: "#/doc", icon: "fa-book" },
+          {
+            label: "Documentation",
+            link: "docs/index.html",
+            target: "_blank",
+            icon: "fa-book"
+          },
           {
             label: "Support",
             link: "#",

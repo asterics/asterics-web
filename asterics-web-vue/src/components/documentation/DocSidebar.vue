@@ -1,22 +1,19 @@
 <template>
-    <v-navigation-drawer app clipped :value="webapp.sidebar.visible" @input="onTransitioned($event)">
-      <rate-limit></rate-limit>
-      <doc-tag-select @clicked="updateTag"></doc-tag-select>
-      <v-list dense>
-        <v-list-group v-for="f in tree" :key="f.sha" v-if="f.type=='tree' && f.path != 'stylesheet'">
+  <v-navigation-drawer app clipped :value="webapp.sidebar.visible" @input="onTransitioned($event)">
+    <rate-limit></rate-limit>
+    <doc-tag-select @clicked="updateTag"></doc-tag-select>
+    <v-list dense>
+      <v-list-group v-for="f in tree" :key="f.sha" v-if="f.type=='tree' && f.path != 'stylesheet'">
+        <v-list-tile slot="activator">
+          <v-list-tile-title>{{f.path}}</v-list-tile-title>
+        </v-list-tile>
 
-          <v-list-tile slot="activator">
-            <v-list-tile-title>{{f.path}}</v-list-tile-title>
-          </v-list-tile>
-
-          <div v-for="e in f.children" :key="e.sha">
-            <doc-sidebar-element :element="e" :tag="tag"></doc-sidebar-element>
-          </div>
-
-        </v-list-group>
-        
-      </v-list>
-    </v-navigation-drawer>
+        <div v-for="e in f.children" :key="e.sha">
+          <doc-sidebar-element :element="e" :tag="tag"></doc-sidebar-element>
+        </div>
+      </v-list-group>
+    </v-list>
+  </v-navigation-drawer>
 </template>
 
 <script>

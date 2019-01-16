@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "prebuild": "node scripts/setup.js",
-    "build": "echo vue-cli-service build",
+    "build": "vue-cli-service build",
     "build:devel": "vue-cli-service build --mode development",
     "build:modern": "vue-cli-service build --modern",
     "build:open": "http-server dist -p 8080 -o",
@@ -16,6 +16,7 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "asterics-web-git": "git+https://github.com/sabicalija/asterics-web-git.git#0.1.0",
     "register-service-worker": "^1.0.0",
     "vue": "^2.5.16",
     "vue-router": "^3.0.1",
@@ -38,6 +39,7 @@
     "css-loader": "^1.0.0",
     "dotenv": "^6.2.0",
     "http-server": "^0.11.1",
+    "klaw-sync": "^6.0.0",
     "material-design-icons-iconfont": "^3.0.3",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",

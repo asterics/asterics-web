@@ -42,7 +42,7 @@ export default new Router({
       component: GettingStartedATSolution
     },
     {
-      path: "/doc",
+      path: "/docs",
       name: "documentation",
       components: {
         default: Documentation,
@@ -53,7 +53,7 @@ export default new Router({
       /* FIXME: add path for tag -> map to selection (dropdown)*/
       /* FIXME: does every html have to be inside folder? if not, change regex to opt. */
       /* FIXME: check for xss */
-      path: "/doc/(.*?)/(.*)/(.*[.]html?)",
+      path: "/docs/(.*?)/(.*)/(.*[.]html?)",
       name: "documentation content",
       components: {
         default: DocContent,
