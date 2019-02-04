@@ -1,13 +1,11 @@
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
-// console.log(
-//   require("fs-extra").readdirSync(
-//     "src/externals/asterics-docs/docs/.vuepress/dist"
-//   )
-// );
-
 module.exports = {
   configureWebpack: {
+    // dev: {
+    //   host: "localhost",
+    //   port: 8888
+    // },
     plugins: [
       new CopyWebpackPlugin([
         {
@@ -15,8 +13,8 @@ module.exports = {
           to: "WebACS"
         },
         {
-          from: "src/external/asterics-docs/docs/.vuepress/dist",
-//          to: "docs",
+          from: "src/external/asterics-docs/dist",
+          to: "docs",
           copyUnmodified: true
         }
       ])
