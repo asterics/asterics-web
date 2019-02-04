@@ -1,0 +1,53 @@
+{
+    "env": {
+        "doc": "The application environment.",
+        "format": ["production", "development"],
+        "default": "development",
+        "env": "NODE_ENV"
+    },
+    "host": {
+        "doc": "The IP address to bind.",
+        "format": "ipaddress",
+        "default": "172.0.0.1",
+        "env": "HOST"
+    },
+    "port": {
+        "doc": "The port of to bind.",
+        "format": "port",
+        "default": 8080,
+        "env": "PORT"
+    },
+    "verbose": {
+        "doc": "Verbose cli output.",
+        "format": "Boolean",
+        "default": false,
+        "env": "VERBOSE"
+    },
+    "submodules": [{
+        "name": {
+            "doc": "Repository name.",
+            "format": "String",
+            "default": ""
+        },
+        "destination": {
+            "doc": "Repository destination.",
+            "format": "String",
+            "default": ""
+        },
+        "reference": {
+            "doc": "Reference repository (auto:foldername, remote, /path/to/repo)",
+            "format": "String",
+            "default": "remote"
+        },
+        "branch": {
+            "doc": "Checkout repository branch|tag.",
+            "format": "String",
+            "default": "master"
+        },
+        "fatality": {
+            "doc": "Abort setup when failed?",
+            "format": "Boolean",
+            "default": false
+        }
+    }]
+}
