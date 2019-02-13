@@ -27,7 +27,7 @@ pipeline {
     }
     stage('Deploy') {
       steps {
-        sh "ln -sf ./asterics-web-vue/dist ${params.TargetDirecotry}"
+        sh "ln -sf ./asterics-web-vue/dist ${params.destination}"
         script {
           def remote = [ name: 'studyathome', host: 'studyathome.technikum-wien.at', user: $SERVER_USR, password: $SERVER_PSW, allowAnyHosts: true ]
           sshRemove remote: remote, path: "/var/www/html/${destination}", failOnError: false
