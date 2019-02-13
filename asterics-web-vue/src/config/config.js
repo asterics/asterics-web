@@ -14,13 +14,13 @@ config.load({
   submodules: [
     {
       name: "asterics-docs",
-      destination: path.join(process.cwd(), "src", "external", "asterics-docs"),
+      location: path.join(process.cwd(), "src", "external", "asterics-docs"),
       reference: getReferenceInPath(process.cwd(), "asterics-docs"),
       branch: "master"
     },
     {
       name: "WebACS",
-      destination: path.join(process.cwd(), "src", "external", "webacs"),
+      location: path.join(process.cwd(), "src", "external", "webacs"),
       reference: getReferenceInPath(process.cwd(), "WebACS"),
       branch: "master"
     }
