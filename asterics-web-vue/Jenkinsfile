@@ -5,6 +5,12 @@ pipeline {
       label 'Linux'
     }
   }
+  parameters {
+    string(name: 'TargetDirectory', defaultValue: 'asterics-web-devlinux', description: 'Target directory name (Deploy)', choices: 'asterics-web-devlinux\nasterics-web-production')
+  }
+  environment {
+    SERVER = credentials('studyathome')
+  }
   stages {
     stage('Source') {
       steps {
@@ -21,20 +27,11 @@ pipeline {
     }
     stage('Deploy') {
       steps {
-        sh 'ln -sf ./asterics-web-vue/dist asterics-web-production'
-        sh 'ln -sf ./asterics-web-vue/dist asterics-web-devlinux'
+        sh "ln -sf ./asterics-web-vue/dist ${params.TargetDirecotry}"
         script {
-          def destination = ""
-          if (env.BRANCH_NAME == 'master') {
-            destination = 'asterics-web-production'
-          } else {
-            destination = 'asterics-web-devlinux'
-          }
-          withCredentials([sshUserPrivateKey(credentialsId: 'studyathome', keyFileVariable: '', passphraseVariable: 'p', usernameVariable: 'u')]) {
-            def remote = [ name: 'studyathome', host: 'studyathome.technikum-wien.at', user: u, password: p, allowAnyHosts: true ]
-            sshRemove remote: remote, path: '/var/www/html/' + destination, failOnError: false
-            sshPut remote: remote, from: destination, into: '/var/www/html/'
-          }
+          def remote = [ name: 'studyathome', host: 'studyathome.technikum-wien.at', user: $SERVER_USR, password: $SERVER_PSW, allowAnyHosts: true ]
+          sshRemove remote: remote, path: "/var/www/html/${destination}", failOnError: false
+          sshPut remote: remote, from: destination, into: '/var/www/html/'
         }
       }
     }
