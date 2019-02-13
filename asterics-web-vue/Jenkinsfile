@@ -1,6 +1,6 @@
 pipeline {
   parameters {
-    choice(name: 'destination', description: 'Destination folder', choices: ['asterics-web-devlinux', 'asterics-web-production'])
+    choice(name: 'destination', description: 'Destination folder', choices: ['asterics-web-devlinux', 'asterics-web-devwindows', 'asterics-web-production' ])
     choice(name: 'agent', description: 'Agent', choices: ['Linux', 'Win'])
     gitParameter(name: 'BRANCH', branchFilter: 'origin/(.*)', defaultValue: env.BRANCH_NAME, type: 'PT_BRANCH_TAG')
   }
@@ -9,9 +9,6 @@ pipeline {
       image 'node:10'
       label params.agent
     }
-  }
-  environment {
-    SERVER = credentials('studyathome')
   }
   stages {
     stage('Source') {
@@ -28,10 +25,13 @@ pipeline {
       }
     }
     stage('Deploy') {
+      environment {
+        SERVER_CREDS = credentials('studyathome')
+      }
       steps {
         sh "ln -sf ./asterics-web-vue/dist ${params.destination}"
         script {
-          def remote = [ name: 'studyathome', host: 'studyathome.technikum-wien.at', user: $SERVER_USR, password: $SERVER_PSW, allowAnyHosts: true ]
+          def remote = [ name: 'studyathome', host: 'studyathome.technikum-wien.at', user: $SERVER_CREDS_USR, password: $SERVER_CREDS_PSW, allowAnyHosts: true ]
           sshRemove remote: remote, path: "/var/www/html/${destination}", failOnError: false
           sshPut remote: remote, from: destination, into: '/var/www/html/'
         }
