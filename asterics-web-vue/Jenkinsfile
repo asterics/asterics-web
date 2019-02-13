@@ -1,0 +1,47 @@
+pipeline {
+  agent {
+    docker {
+      image 'node:10'
+      label 'Linux'
+    }
+  }
+  stages {
+    stage('Source') {
+      steps {
+        git branch: env.BRANCH_NAME, url: 'https://github.com/asterics/asterics-web'
+      }
+    }
+    stage('Build') {
+      steps {
+        sh '''
+          npm install --prefix ./asterics-web-vue
+          npm run build --prefix ./asterics-web-vue
+        '''
+      }
+    }
+    stage('Deploy') {
+      steps {
+        sh 'ln -sf ./asterics-web-vue/dist asterics-web-production'
+        sh 'ln -sf ./asterics-web-vue/dist asterics-web-devlinux'
+        script {
+          def destination = ""
+          if (env.BRANCH_NAME == 'master') {
+            destination = 'asterics-web-production'
+          } else {
+            destination = 'asterics-web-devlinux'
+          }
+          withCredentials([sshUserPrivateKey(credentialsId: 'studyathome', passphraseVariable: 'p', usernameVariable: 'u')]) {
+            def remote = [ name: 'studyathome', host: 'studyathome.technikum-wien.at', user: u, password: p, allowAnyHosts: true]
+            sshRemove remote: remote, path: "/var/www/html/${destination}", failOnError: false
+            sshPut remote: remote, from: destination, into: '/var/www/html/'
+          }
+        }
+      }
+    }
+  }
+  post {
+    always {
+      cleanWs()
+    }
+  }
+}
