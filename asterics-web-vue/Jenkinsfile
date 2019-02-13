@@ -7,6 +7,7 @@ pipeline {
   }
   parameters {
     choice(name: 'destination', description: 'Destination folder', choices: ['asterics-web-devlinux', 'asterics-web-production'])
+    gitParameter(name: 'BRANCH', branchFilter: 'origin/(.*)', defaultValue: env.BRANCH_NAME, type: 'PT_BRANCH_TAG')
   }
   environment {
     SERVER = credentials('studyathome')
@@ -14,7 +15,7 @@ pipeline {
   stages {
     stage('Source') {
       steps {
-        git branch: env.BRANCH_NAME, url: 'https://github.com/asterics/asterics-web'
+        git branch: params.BRANCH, url: 'https://github.com/asterics/asterics-web'
       }
     }
     stage('Build') {
