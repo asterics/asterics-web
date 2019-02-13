@@ -4,10 +4,11 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "prebuild": "node scripts/setup.js",
+    "prebuild": "npm run-script setup",
     "build": "vue-cli-service build",
     "build:devel": "vue-cli-service build --mode development",
     "build:modern": "vue-cli-service build --modern",
+    "setup": "node src/scripts/setup.js",
     "project": "vue ui",
     "webpack:config": "vue-cli-service inspect",
     "lint": "vue-cli-service lint",

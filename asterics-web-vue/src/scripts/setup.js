@@ -2,20 +2,12 @@ const path = require("path");
 
 const configPath = path.join(process.cwd(), "src", "config", "config.js");
 
-const config = require(configPath),
-  // shell = require("shelljs"),
-  { execute } = require("@asterics/node-utils"),
-  { ensureGitSubmodule } = require("@asterics/git-tools");
-
-// if (!shell.which("git")) {
-//   shell.echo("Sorry, this script requires git");
-//   shell.exit(1);
-// }
+const config = require(configPath);
+const { execute } = require("@asterics/node-utils");
+const { ensureGitSubmodule } = require("@asterics/git-tools");
 
 /* Setup git submodules */
 config.get("submodules").find(submodule => ensureGitSubmodule(submodule, config.get("verbose")));
-
-// /* Setup asterics-docs */
 
 /* Install dependencies*/
 buildAstericsDocs();
@@ -30,8 +22,7 @@ function buildAstericsDocs() {
   });
 
   execute({
-    // cmd: `npm run-script release --prefix ${asterics_docs.destination}`,
-    cmd: `npm run-script legacy --prefix ${asterics_docs.destination}`,
+    cmd: `npm run-script setup --prefix ${asterics_docs.destination}`,
     success: `build asterics-docs in ${asterics_docs.destination}`,
     error: `failed building asterics-docs in ${asterics_docs.destination}`,
     verbose: config.get("verbose"),
