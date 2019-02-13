@@ -1,13 +1,14 @@
 pipeline {
+  parameters {
+    choice(name: 'destination', description: 'Destination folder', choices: ['asterics-web-devlinux', 'asterics-web-production'])
+    choice(name: 'agent', description: 'Agent', choices: ['Linux', 'Windows'])
+    gitParameter(name: 'BRANCH', branchFilter: 'origin/(.*)', defaultValue: env.BRANCH_NAME, type: 'PT_BRANCH_TAG')
+  }
   agent {
     docker {
       image 'node:10'
-      label 'Linux'
+      label params.agent
     }
-  }
-  parameters {
-    choice(name: 'destination', description: 'Destination folder', choices: ['asterics-web-devlinux', 'asterics-web-production'])
-    gitParameter(name: 'BRANCH', branchFilter: 'origin/(.*)', defaultValue: env.BRANCH_NAME, type: 'PT_BRANCH_TAG')
   }
   environment {
     SERVER = credentials('studyathome')
@@ -21,8 +22,8 @@ pipeline {
     stage('Build') {
       steps {
         sh '''
-          npm install --prefix ./asterics-web-vue
-          npm run build --prefix ./asterics-web-vue
+          mkdir ./asterics-web-vue/dist
+          touch ./asterics-web-vue/dist/index.html
         '''
       }
     }
