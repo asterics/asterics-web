@@ -30,9 +30,9 @@ pipeline {
           } else {
             destination = 'asterics-web-devlinux'
           }
-          withCredentials([sshUserPrivateKey(credentialsId: 'studyathome', passphraseVariable: 'p', usernameVariable: 'u')]) {
-            def remote = [ name: 'studyathome', host: 'studyathome.technikum-wien.at', user: u, password: p, allowAnyHosts: true]
-            sshRemove remote: remote, path: "/var/www/html/${destination}", failOnError: false
+          withCredentials([sshUserPrivateKey(credentialsId: 'studyathome', keyFileVariable: '', passphraseVariable: 'p', usernameVariable: 'u')]) {
+            def remote = [ name: 'studyathome', host: 'studyathome.technikum-wien.at', user: u, password: p, allowAnyHosts: true ]
+            sshRemove remote: remote, path: '/var/www/html/' + destination, failOnError: false
             sshPut remote: remote, from: destination, into: '/var/www/html/'
           }
         }
