@@ -6,7 +6,7 @@ pipeline {
     }
   }
   parameters {
-    string(name: 'TargetDirectory', defaultValue: 'asterics-web-devlinux', description: 'Target directory name (Deploy)', choices: 'asterics-web-devlinux\nasterics-web-production')
+    choice(name: 'destination', description: 'Destination folder', choices: ['asterics-web-devlinux', 'asterics-web-production'])
   }
   environment {
     SERVER = credentials('studyathome')
