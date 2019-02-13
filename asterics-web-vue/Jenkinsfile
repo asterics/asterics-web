@@ -1,7 +1,7 @@
 pipeline {
   parameters {
     choice(name: 'destination', description: 'Destination folder', choices: ['asterics-web-devlinux', 'asterics-web-production'])
-    choice(name: 'agent', description: 'Agent', choices: ['Linux', 'Windows'])
+    choice(name: 'agent', description: 'Agent', choices: ['Linux', 'Win'])
     gitParameter(name: 'BRANCH', branchFilter: 'origin/(.*)', defaultValue: env.BRANCH_NAME, type: 'PT_BRANCH_TAG')
   }
   agent {
