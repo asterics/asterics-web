@@ -22,7 +22,7 @@ function buildAstericsDocs() {
   });
 
   execute({
-    cmd: `npm run setup --cwd ${asterics_docs.location}`,
+    cmd: `yarn run setup --cwd ${asterics_docs.location}`,
     success: `build asterics-docs in ${asterics_docs.location}`,
     error: `failed building asterics-docs in ${asterics_docs.location}`,
     verbose: config.get("verbose"),
