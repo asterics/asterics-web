@@ -15,14 +15,14 @@ buildAstericsDocs();
 function buildAstericsDocs() {
   const asterics_docs = config.get("submodules").find(({ name }) => name === "asterics-docs");
   execute({
-    cmd: `yarn install --cwd ${asterics_docs.location}`,
+    cmd: `yarn --cwd ${asterics_docs.location} install`,
     success: `yarn dependencies installed in ${asterics_docs.location}`,
     error: `failed installing npm dependencies in ${asterics_docs.location}`,
     verbose: config.get("verbose")
   });
 
   execute({
-    cmd: `yarn run setup --cwd ${asterics_docs.location}`,
+    cmd: `yarn --cwd ${asterics_docs.location} run setup`,
     success: `build asterics-docs in ${asterics_docs.location}`,
     error: `failed building asterics-docs in ${asterics_docs.location}`,
     verbose: config.get("verbose"),
