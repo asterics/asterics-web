@@ -16,7 +16,7 @@ config.load({
       name: "asterics-docs",
       location: path.join(process.cwd(), "src", "external", "asterics-docs"),
       reference: getReferenceInPath(process.cwd(), "asterics-docs"),
-      branch: "master"
+      branch: "sprint-201901-content"
     },
     {
       name: "WebACS",
