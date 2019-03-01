@@ -17,7 +17,7 @@ pipeline {
   stages {
     stage('Source') {
       steps {
-        git branch: params.BRANCH, url: "${web}"
+        git branch: params.BRANCH, credentialsId: '84ec3841-ffbb-4735-8ea2-45c851cb5f41', url: "${web}"
       }
     }
     stage('Build') {
