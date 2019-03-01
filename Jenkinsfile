@@ -7,7 +7,6 @@ pipeline {
     choice(name: 'agent', description: 'Agent', choices: ['Linux', 'Win'])
     choice(name: 'image', description: 'Docker Image', choices: ['node:10', 'node:11'])
     gitParameter(branchFilter: 'origin.*/(.*)', defaultValue: env.BRANCH_NAME, name: 'BRANCH', type: 'PT_BRANCH_TAG', useRepository: "${web}")
-    gitParameter(branchFilter: 'origin.*/(.*)', defaultValue: env.BRANCH_NAME, name: 'BRANCH_DOCS', type: 'PT_BRANCH_TAG', useRepository: "${docs}")
   }
   agent {
     docker {
@@ -18,8 +17,7 @@ pipeline {
   stages {
     stage('Source') {
       steps {
-        git branch: params.BRANCH, credentialsId: '84ec3841-ffbb-4735-8ea2-45c851cb5f41', url: "${web}"
-        git branch: params.BRANCH, credentialsId: '84ec3841-ffbb-4735-8ea2-45c851cb5f41', url: "${docs}"
+        git branch: params.BRANCH, url: "${web}"
       }
     }
     stage('Build') {
