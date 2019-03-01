@@ -1,10 +1,13 @@
+def web = "https://github.com/asterics/asterics-web.git"
+def docs = "https://github.com/asterics/asterics-docs.git"
+
 pipeline {
   parameters {
     choice(name: 'destination', description: 'Destination folder', choices: ['asterics-web-devlinux', 'asterics-web-devwindows', 'asterics-web-production' ])
     choice(name: 'agent', description: 'Agent', choices: ['Linux', 'Win'])
     choice(name: 'image', description: 'Docker Image', choices: ['node:10', 'node:11'])
-    gitParameter(name: 'BRANCH', branchFilter: 'origin/(.*)', defaultValue: env.BRANCH_NAME, type: 'PT_BRANCH_TAG', useRepository: 'https://github.com/asterics/asterics-web.git')
-    gitParameter(name: 'BRANCH_DOCS', branchFilter: 'origin/(.*)', defaultValue: 'master', type: 'PT_BRANCH_TAG', useRepository: 'https://github.com/asterics/asterics-docs.git')
+    gitParameter(branchFilter: 'origin/(.*)', defaultValue: env.BRANCH_NAME, name: 'BRANCH', type: 'PT_BRANCH_TAG', useRepository: "${web}")
+    gitParameter(branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH_DOCS', type: 'PT_BRANCH_TAG', useRepository: "${docs}")
   }
   agent {
     docker {
@@ -15,7 +18,8 @@ pipeline {
   stages {
     stage('Source') {
       steps {
-        git branch: params.BRANCH, url: 'https://github.com/asterics/asterics-web'
+        git branch: params.BRANCH, url: "${web}"
+        git branch: params.BRANCH_DOCS, url: "${docs}"
       }
     }
     stage('Build') {
