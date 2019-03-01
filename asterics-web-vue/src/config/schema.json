@@ -23,6 +23,12 @@
         "default": false,
         "env": "VERBOSE"
     },
+    "branch_name_docs": {
+        "doc": "Verbose cli output.",
+        "format": "String",
+        "default": "master",
+        "env": "BRANCH_NAME_DOCS"
+    },
     "submodules": [{
         "name": {
             "doc": "Repository name.",

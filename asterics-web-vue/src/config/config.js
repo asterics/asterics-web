@@ -16,7 +16,7 @@ config.load({
       name: "asterics-docs",
       location: path.join(process.cwd(), "src", "external", "asterics-docs"),
       reference: getReferenceInPath(process.cwd(), "asterics-docs"),
-      branch: "master"
+      branch: config.get("branch_name_docs")
     },
     {
       name: "WebACS",
