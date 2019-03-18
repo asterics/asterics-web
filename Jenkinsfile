@@ -10,12 +10,21 @@ pipeline {
     gitParameter(branchFilter: 'origin.*/(.*)', defaultValue: env.BRANCH_NAME, name: 'BRANCH', type: 'PT_BRANCH_TAG', useRepository: "${web}")
     gitParameter(defaultValue: 'master', name: 'BRANCH_DOCS', type: 'PT_BRANCH_TAG', useRepository: "${docs}")
   }
-  agent none
+  triggers {
+    pollSCM('H/5 * * * *')
+  }
+  // agent none
+  agent {
+    docker {
+      image params.image
+      label params.agent
+    }
+  }
   stages {
-    stage('Checkout') {
-      agent {
-        label params.agent
-      }
+    // stage('Checkout') {
+    //   agent {
+    //     label params.agent
+    //   }
       // Get CalibrationResults from GitHub
       // checkout([  
       //             $class: 'GitSCM', 
@@ -25,25 +34,25 @@ pipeline {
       //             submoduleCfg: [], 
       //             userRemoteConfigs: [[credentialsId: '6463627-ab54-4e42-bc29-123458', url: 'https://github.com/AtlasBID/CalibrationResults.git']]
       //         ])
-      steps {
-        script {
-          checkout([
-            $class: 'GitSCM',
-            branches: scm.branches,
-            doGenerateSubmoduleConfigurations: true,
-            extensions: scm.extensions + [[$class: 'SubmoduleOption', parentCredentials: true]],
-            userRemoteConfigs: scm.userRemoteConfigs
-          ])
-        }
-      }
-    }
+    //   steps {
+    //     script {
+    //       checkout([
+    //         $class: 'GitSCM',
+    //         branches: scm.branches,
+    //         doGenerateSubmoduleConfigurations: true,
+    //         extensions: scm.extensions + [[$class: 'SubmoduleOption', parentCredentials: true]],
+    //         userRemoteConfigs: scm.userRemoteConfigs
+    //       ])
+    //     }
+    //   }
+    // }
     stage('Test') {
-      agent {
-        docker {
-          image params.image
-          label params.agent
-        }
-      }
+      // agent {
+      //   docker {
+      //     image params.image
+      //     label params.agent
+      //   }
+      // }
       steps {
         print 'DEBUG: parameter para = ' + params.para
         print "DEBUG: parameter para = ${params.para}"
