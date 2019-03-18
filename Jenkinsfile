@@ -27,13 +27,15 @@ pipeline {
       //             submoduleCfg: [], 
       //             userRemoteConfigs: [[credentialsId: '6463627-ab54-4e42-bc29-123458', url: 'https://github.com/AtlasBID/CalibrationResults.git']]
       //         ])
-      checkout([
-        $class: 'GitSCM',
-        branches: scm.branches,
-        doGenerateSubmoduleConfigurations: true,
-        extensions: scm.extensions + [[$class: 'SubmoduleOption', parentCredentials: true]],
-        userRemoteConfigs: scm.userRemoteConfigs
-      ])
+      steps {
+        checkout([
+          $class: 'GitSCM',
+          branches: scm.branches,
+          doGenerateSubmoduleConfigurations: true,
+          extensions: scm.extensions + [[$class: 'SubmoduleOption', parentCredentials: true]],
+          userRemoteConfigs: scm.userRemoteConfigs
+        ])
+      }
     }
     stage('Test') {
       steps {
