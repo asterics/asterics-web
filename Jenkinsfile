@@ -11,7 +11,7 @@ pipeline {
     gitParameter(defaultValue: 'master', name: 'BRANCH_DOCS', type: 'PT_BRANCH_TAG', useRepository: "${docs}")
   }
   triggers {
-    pollSCM('H/5 * * * *')
+    pollSCM('H/1 * * * *')
   }
   // agent none
   agent {
