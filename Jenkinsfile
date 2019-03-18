@@ -19,10 +19,10 @@ pipeline {
   stages {
     stage('Test') {
       steps {
-        sh '''
-          echo hello
-          echo ${params.para}
-        '''
+        print 'DEBUG: parameter para = ' + params.para
+        print "DEBUG: parameter para = ${params.para}"
+        sh "echo sh para is ${params.para}"
+        if (params.para) { print "THIS SHOULD NOT DISPLAY" }
       }
     }
   }
