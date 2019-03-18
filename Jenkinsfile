@@ -17,6 +17,24 @@ pipeline {
     }
   }
   stages {
+    stage('Checkout') {
+      // Get CalibrationResults from GitHub
+      // checkout([  
+      //             $class: 'GitSCM', 
+      //             branches: [[name: 'refs/heads/master']], 
+      //             doGenerateSubmoduleConfigurations: false, 
+      //             extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'CalibrationResults']], 
+      //             submoduleCfg: [], 
+      //             userRemoteConfigs: [[credentialsId: '6463627-ab54-4e42-bc29-123458', url: 'https://github.com/AtlasBID/CalibrationResults.git']]
+      //         ])
+      checkout([
+        $class: 'GitSCM',
+        branches: scm.branches,
+        doGenerateSubmoduleConfigurations: true,
+        extensions: scm.extensions + [[$class: 'SubmoduleOption', parentCredentials: true]],
+        userRemoteConfigs: scm.userRemoteConfigs
+      ])
+    }
     stage('Test') {
       steps {
         print 'DEBUG: parameter para = ' + params.para
