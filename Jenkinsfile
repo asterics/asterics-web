@@ -10,14 +10,12 @@ pipeline {
     gitParameter(branchFilter: 'origin.*/(.*)', defaultValue: env.BRANCH_NAME, name: 'BRANCH', type: 'PT_BRANCH_TAG', useRepository: "${web}")
     gitParameter(defaultValue: 'master', name: 'BRANCH_DOCS', type: 'PT_BRANCH_TAG', useRepository: "${docs}")
   }
-  agent {
-    docker {
-      image params.image
-      label params.agent
-    }
-  }
+  agent none
   stages {
     stage('Checkout') {
+      agent {
+        label params.agent
+      }
       // Get CalibrationResults from GitHub
       // checkout([  
       //             $class: 'GitSCM', 
@@ -38,6 +36,12 @@ pipeline {
       }
     }
     stage('Test') {
+      agent {
+        docker {
+          image params.image
+          label params.agent
+        }
+      }
       steps {
         print 'DEBUG: parameter para = ' + params.para
         print "DEBUG: parameter para = ${params.para}"
