@@ -7,7 +7,7 @@ pipeline {
     choice(name: 'agent', description: 'Agent', choices: ['Linux', 'Win'])
     choice(name: 'image', description: 'Docker Image', choices: ['node:10', 'node:11'])
     string(defaultValue: 'hello', name: 'para', description: 'dummy')
-    gitParameter(branchFilter: 'origin.*/(.*)', defaultValue: "${env.BRANCH_NAME}", name: 'BRANCH', type: 'PT_BRANCH_TAG', useRepository: "${web}")
+    gitParameter(branchFilter: 'origin.*/(.*)', defaultValue: master, name: 'BRANCH', type: 'PT_BRANCH_TAG', useRepository: "${web}")
     gitParameter(defaultValue: 'master', name: 'BRANCH_DOCS', type: 'PT_BRANCH_TAG', useRepository: "${docs}")
   }
   triggers {
