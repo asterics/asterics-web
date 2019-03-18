@@ -1,6 +1,8 @@
 def web = "https://github.com/asterics/asterics-web.git"
 def docs = "https://github.com/asterics/asterics-docs.git"
 
+println "Hallo Welt"
+
 pipeline {
   parameters {
     choice(name: 'destination', description: 'Destination folder', choices: ['asterics-web-devlinux', 'asterics-web-devwindows', 'asterics-web-production' ])
