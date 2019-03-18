@@ -18,10 +18,12 @@ pipeline {
   }
   stages {
     stage('Test') {
-      sh '''
-        echo hello
-        echo ${params.para}
-      '''
+      steps {
+        sh '''
+          echo hello
+          echo ${params.para}
+        '''
+      }
     }
   }
   // stages {
