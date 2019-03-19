@@ -16,13 +16,13 @@ config.load({
       name: "asterics-docs",
       location: path.join(process.cwd(), "src", "external", "asterics-docs"),
       reference: getReferenceInPath(process.cwd(), "asterics-docs"),
-      branch: config.get("branch_name_docs")
+      branch: config.get("branch_docs")
     },
     {
       name: "WebACS",
       location: path.join(process.cwd(), "src", "external", "webacs"),
       reference: getReferenceInPath(process.cwd(), "WebACS"),
-      branch: "master"
+      branch: config.get("branch_webacs")
     }
   ]
 });

@@ -23,11 +23,17 @@
         "default": false,
         "env": "VERBOSE"
     },
-    "branch_name_docs": {
-        "doc": "Verbose cli output.",
+    "branch_docs": {
+        "doc": "Branch of asterics-docs.",
         "format": "String",
         "default": "master",
-        "env": "BRANCH_NAME_DOCS"
+        "env": "BRANCH_DOCS"
+    },
+    "branch_webacs": {
+        "doc": "Branch of WebACS.",
+        "format": "String",
+        "default": "master",
+        "env": "BRANCH_WEBACS"
     },
     "submodules": [{
         "name": {
