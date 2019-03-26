@@ -26,6 +26,6 @@ function buildAstericsDocs() {
     success: `build asterics-docs in ${asterics_docs.location}`,
     error: `failed building asterics-docs in ${asterics_docs.location}`,
     verbose: config.get("verbose"),
-    env: { ENDPOINT: "docs" }
+    env: { ENDPOINT: config.get("endpoint_docs"), FATALITY: config.get("fatality") }
   });
 }
