@@ -110,6 +110,7 @@ pipeline {
               git checkout $BRANCH
               git pull
               rm -rf ./asterics-web-vue/src/external/* .git/modules/asterics-web-vue/src/external/*
+              ls -la ./asterics-web-vue ./asterics-web-vue/dist
               npm run --prefix ./asterics-web-vue release:prepare
               npm run --prefix ./asterics-web-vue release -- --branch $BRANCH
             '''
