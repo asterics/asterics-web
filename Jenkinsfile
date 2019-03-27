@@ -88,6 +88,7 @@ pipeline {
           }
           steps {
             archiveArtifacts artifacts: 'asterics-web-vue/asterics-web.zip', fingerprint: true
+            archiveArtifacts artifacts: 'asterics-web-vue/dist/build.json', fingerprint: true
           }
         }
         stage('Release') {
