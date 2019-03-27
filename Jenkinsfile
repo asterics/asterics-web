@@ -87,7 +87,7 @@ pipeline {
             label params.agent
           }
           steps {
-            archiveArtifacts artifacts: './asterics-web-vue/asterics-web.zip', fingerprint: true
+            archiveArtifacts artifacts: 'asterics-web-vue/asterics-web.zip', fingerprint: true
           }
         }
         stage('Release') {
