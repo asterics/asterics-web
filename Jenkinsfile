@@ -55,7 +55,7 @@ pipeline {
         label params.agent
       }
       steps {
-        sh 'cd dist && zip -r ../asterics-web.zip *'
+        sh 'cd ./asterics-web-vue/dist && zip -r ../asterics-web.zip *'
       }
     }
     stage('Output') {
@@ -87,7 +87,7 @@ pipeline {
             label params.agent
           }
           steps {
-            archiveArtifacts artifacts: 'asterics-web.zip', fingerprint: true
+            archiveArtifacts artifacts: './asterics-web-vue/asterics-web.zip', fingerprint: true
           }
         }
         stage('Release') {
