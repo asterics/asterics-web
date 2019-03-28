@@ -1,8 +1,11 @@
 pipeline {
   parameters {
     booleanParam(name: 'deploy', defaultValue: true, description: 'Deploy build')
+    booleanParam(name: 'deploy_io', defaultValue: false, description: 'Deploy build to github.io')
+    booleanParam(name: 'deploy_io_exchange', defaultValue: false, description: 'Exchange deployed build to github.io with previous commit')
     booleanParam(name: 'store', defaultValue: false, description: 'Store build')
     booleanParam(name: 'release', defaultValue: false, description: 'Release build')
+    booleanParam(name: 'release_comment', defaultValue: true, description: 'Add comment to each issue and pull request resolved')
     password(name: 'GH_TOKEN', defaultValue: '', description: 'Github user token. Note: don\'t use a password, will be logged to console on error.')
     choice(name: 'destination', description: 'Destination folder', choices: ['asterics-web-devlinux', 'asterics-web-devwindows', 'asterics-web-production' ])
     choice(name: 'agent', description: 'Agent', choices: ['Linux', 'Win'])
@@ -44,7 +47,7 @@ pipeline {
         '''
       }
     }
-    stage('Prepare') {
+    stage('Prepare: Release/Store') {
       when { 
         anyOf { 
           equals expected: true, actual: params.release
@@ -77,6 +80,38 @@ pipeline {
               sshRemove remote: remote, path: "/var/www/html/${params.destination}", failOnError: false
               sshPut remote: remote, from: params.destination, into: '/var/www/html/'
             }
+          }
+        }
+        stage('Deploy: Github IO') {
+          when {
+            equals expected: true, actual: params.deploy_io
+          }
+          agent {
+            label params.agent
+          }
+          steps {
+            sh '''
+              git clone -b gh-pages --single-branch https://github.com/asterics/asterics-web.git gh-pages
+            '''
+            script {
+              if (params.deploy_io_exchange) {
+                sh '''
+                  cd gh-pages
+                  git log
+                  git reset --hard HEAD~1
+                  git log
+                '''
+              }
+            }
+            sh '''
+              rm -rf gh-pages/*
+              cp -r asterics-web-vue/dist/* gh-pages/
+              cd gh-pages
+              git add .
+              git add -u .
+              git -c user.name='Mr. Jenkins' -c user.email='studyathome@technikum-wien.at' commit -m 'docs: release asterics-web'
+              git push -f https://$GH_TOKEN@github.com/asterics/asterics-web.git
+            '''
           }
         }
         stage('Store') {
