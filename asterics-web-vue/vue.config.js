@@ -1,6 +1,7 @@
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
+  baseUrl: "/asterics-web/",
   configureWebpack: {
     // dev: {
     //   host: "localhost",
