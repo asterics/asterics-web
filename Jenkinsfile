@@ -42,10 +42,8 @@ pipeline {
       }
       steps {
         sh '''
-          git tag -l
           npm install --prefix ./asterics-web-vue
           npm run build --prefix ./asterics-web-vue
-          git tag -l
         '''
       }
     }
@@ -93,34 +91,26 @@ pipeline {
           }
           steps {
             sh '''
-              git tag -l
               git clone -b gh-pages --single-branch https://github.com/asterics/asterics-web.git gh-pages
-              git tag -l
             '''
             script {
               if (params.deploy_io_exchange) {
                 sh '''
-                  git tag -l
                   cd gh-pages
                   git log
                   git reset --hard HEAD~1
                   git log
-                  git tag -l
                 '''
               }
             }
             sh '''
-              git tag -l
               rm -rf gh-pages/*
               cp -r asterics-web-vue/dist/* gh-pages/
-              git tag -l
               cd gh-pages
-              git tag -l
               git add .
               git add -u .
               git -c user.name='Mr. Jenkins' -c user.email='studyathome@technikum-wien.at' commit -m 'docs: release asterics-web'
               git push -f https://$GH_TOKEN@github.com/asterics/asterics-web.git
-              git tag -l
             '''
           }
         }
@@ -153,14 +143,11 @@ pipeline {
           }
           steps {
             sh '''
-              git tag -l
               git checkout $BRANCH
               git pull
-              git tag -l
               rm -rf ./asterics-web-vue/src/external/* .git/modules/asterics-web-vue/src/external/*
               npm run --prefix ./asterics-web-vue release:prepare
               npm run --prefix ./asterics-web-vue release -- --branch $BRANCH
-              git tag -l
             '''
           }
         }
