@@ -1,13 +1,13 @@
 <template>
   <v-app>
-    <!-- <sidebar></sidebar>
+    <sidebar></sidebar>
     <navigation></navigation>
 
     <v-content>
       <v-container fluid>
         <router-view :key="$route.fullPath"></router-view>
       </v-container>
-    </v-content>-->
+    </v-content>
   </v-app>
 </template>
 
