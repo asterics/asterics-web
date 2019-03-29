@@ -1,7 +1,8 @@
 const { release_comment } = process.env;
-const successComment = release_comment
-  ? ":tada: This issue has been resolved in version ${nextRelease.version} :tada:\n\nThe release is available on [GitHub release](<github_release_url>)"
-  : false;
+const successComment =
+  release_comment === "true"
+    ? ":tada: This issue has been resolved in version ${nextRelease.version} :tada:\n\nThe release is available on [GitHub release](<github_release_url>)"
+    : false;
 
 module.exports = {
   repositoryUrl: "https://github.com/asterics/asterics-web",
