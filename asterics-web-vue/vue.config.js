@@ -1,7 +1,14 @@
+const path = require("path");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const configPath = path.join(process.cwd(), "src", "config", "config.js");
+
+const config = require(configPath);
+
+const endpoint = config.get("endpoint");
+const base = endpoint === "" ? "" : `/${endpoint}/`;
 
 module.exports = {
-  baseUrl: "/asterics-web/",
+  baseUrl: base,
   configureWebpack: {
     // dev: {
     //   host: "localhost",

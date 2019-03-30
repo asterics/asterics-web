@@ -29,6 +29,12 @@
         "default": false,
         "env": "VERBOSE"
     },
+    "endpoint": {
+        "doc": "Hosting endpoint of asterics-web.",
+        "format": "String",
+        "default": "",
+        "env": "ENDPOINT"
+    },
     "endpoint_docs": {
         "doc": "Hosting endpoint of asterics-docs.",
         "format": "String",
