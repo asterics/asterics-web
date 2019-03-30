@@ -29,22 +29,59 @@ pipeline {
       }
     }
     stage('Build') {
-      agent {
-        docker {
-          image params.image
-          label params.agent
+      parallel {
+        stage('Build for Release/Store/Deployment') {
+          when { 
+            anyOf { 
+              equals expected: true, actual: params.release
+              equals expected: true, actual: params.store
+              equals expected: true, actual: params.deploy
+            }
+          }
+          agent {
+            docker {
+              image params.image
+              label params.agent
+            }
+          }
+          environment {
+            FATALITY = true
+            VERBOSE = true
+            ENDPOINT = ""
+            ENDPOINT_DOCS = "docs"
+          }
+          steps {
+            sh '''
+              npm install --prefix ./asterics-web-vue
+              npm run build --prefix ./asterics-web-vue
+              mv asterics-web-vue/dist dist
+            '''
+          }
         }
-      }
-      environment {
-        FATALITY = true
-        VERBOSE = true
-        ENDPOINT_DOCS = "docs"
-      }
-      steps {
-        sh '''
-          npm install --prefix ./asterics-web-vue
-          npm run build --prefix ./asterics-web-vue
-        '''
+        stage('Build for Github IO') {
+          when {
+            equals expected: true, actual: params.deploy_io
+          }
+          agent {
+            docker {
+              image params.image
+              label params.agent
+            }
+          }
+          environment {
+            FATALITY = true
+            VERBOSE = true
+            ENDPOINT = "asterics-web"
+            ENDPOINT_DOCS = "docs"
+          }
+          steps {
+            sh '''
+              npm install --prefix ./asterics-web-vue
+              npm run build --prefix ./asterics-web-vue
+              mv asterics-web-vue/dist dist-io
+            '''
+          }
+        }
       }
     }
     stage('Prepare: Release/Store') {
@@ -58,7 +95,7 @@ pipeline {
         label params.agent
       }
       steps {
-        sh 'cd ./asterics-web-vue/dist && zip -r ../asterics-web.zip *'
+        sh 'cd dist && zip -r ../asterics-web.zip *'
       }
     }
     stage('Output') {
@@ -74,7 +111,7 @@ pipeline {
             SERVER = credentials('server')
           }
           steps {
-            sh "ln -sf ./asterics-web-vue/dist ${params.destination}"
+            sh "ln -sf dist ${params.destination}"
             script {
               def remote = [ name: 'studyathome', host: 'studyathome.technikum-wien.at', user: env.SERVER_USR, password: env.SERVER_PSW, allowAnyHosts: true ]
               sshRemove remote: remote, path: "/var/www/html/${params.destination}", failOnError: false
@@ -105,7 +142,7 @@ pipeline {
             }
             sh '''
               rm -rf gh-pages/*
-              cp -r asterics-web-vue/dist/* gh-pages/
+              cp -r dist-io/* gh-pages/
               cd gh-pages
               git add .
               git add -u .
@@ -122,8 +159,8 @@ pipeline {
             label params.agent
           }
           steps {
-            archiveArtifacts artifacts: 'asterics-web-vue/asterics-web.zip', fingerprint: true
-            archiveArtifacts artifacts: 'asterics-web-vue/dist/build.json', fingerprint: true
+            archiveArtifacts artifacts: 'asterics-web.zip', fingerprint: true
+            archiveArtifacts artifacts: 'dist/build.json', fingerprint: true
           }
         }
         stage('Release') {
