@@ -17,8 +17,9 @@ module.exports = {
     plugins: [
       new CopyWebpackPlugin([
         {
-          from: "src/external/webacs",
-          to: "WebACS"
+          from: "src/external/webacs/dist",
+          to: "WebACS",
+          copyUnmodified: true
         },
         {
           from: "src/external/asterics-docs/dist",
