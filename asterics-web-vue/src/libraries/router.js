@@ -1,6 +1,8 @@
 import Vue from "vue";
 import Router from "vue-router";
 
+import Welcome from "@/components/welcome/Welcome";
+
 import GettingStarted from "@/components/getting-started/GettingStarted";
 import GettingStartedModel from "@/components/getting-started/Model";
 import GettingStartedPlugin from "@/components/getting-started/Plugin";
@@ -16,9 +18,8 @@ export default new Router({
   routes: [
     {
       path: "/",
-      redirect: () => {
-        window.location = "/docs/index.html";
-      }
+      name: "welcome",
+      component: Welcome
     },
     {
       path: "/getting-started",

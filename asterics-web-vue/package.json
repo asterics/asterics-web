@@ -1,18 +1,21 @@
 {
   "name": "asterics-web-vue",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "prebuild": "npm run-script setup",
     "build": "vue-cli-service build",
+    "postbuild": "node src/scripts/logBuild.js",
     "build:devel": "vue-cli-service build --mode development",
     "build:modern": "vue-cli-service build --modern",
     "setup": "node src/scripts/setup.js",
     "project": "vue ui",
     "webpack:config": "vue-cli-service inspect",
     "lint": "vue-cli-service lint",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "vue-cli-service test:unit",
+    "release": "semantic-release",
+    "release:prepare": "yarn add -D semantic-release@15 @semantic-release/commit-analyzer @semantic-release/changelog @semantic-release/exec"
   },
   "dependencies": {
     "asterics-web-git": "git+https://github.com/sabicalija/asterics-web-git.git#0.1.0",
